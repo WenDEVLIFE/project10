@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+import javax.swing.*;
+
 /**
  *
  * @author lenar
@@ -57,6 +59,11 @@ public class jframesystem extends javax.swing.JFrame {
         jLabel6.setText("Confirm Password");
 
         jButton1.setText("Sign Up");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,6 +80,11 @@ public class jframesystem extends javax.swing.JFrame {
         jLabel7.setText("Already have an account?");
 
         jButton2.setText("Log In here");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,26 +149,44 @@ public class jframesystem extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
-        // TODO add your handling code here:
-        System.out.println("Confirm Password entered (hidden)");
+       
     }//GEN-LAST:event_jPasswordField2ActionPerformed
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-        String username = jTextField1.getText();
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+         // TODO add your handling code here:
+        System.out.println("Confirm Password entered (hidden)");
+        System.out.println("Redirecting to login page. . .");
+
+        login loginPage = new login();
+        loginPage.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+         String username = jTextField1.getText();
         String id = jTextField2.getText();
         String password = new String(jPasswordField1.getPassword());
         String confirmPassword = new String(jPasswordField2.getPassword());
 
         if (username.isEmpty() || id.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             System.out.println("Please fill in all fields.");
+            JOptionPane.showMessageDialog(this, "Please fill in all fields.");
         } else if (!password.equals(confirmPassword)) {
             System.out.println("Passwords do not match.");
+            JOptionPane.showMessageDialog(this, "Passwords do not match.");
         } else {
+
+            // TODO : added a function where it will store user from the database
             System.out.println("Sign-Up Successful for: " + username);
+            jTextField1.setText("");
+            jTextField2.setText("");
+            jPasswordField1.setText("");
+            jPasswordField2.setText("");
+            JOptionPane.showMessageDialog(this, "Sign-Up Successful for: " + username);
         }
-    }
-    private void jButtom2ActionPerformed(java.awt.event.ActionEvent evt){
-        System.out.println("Redirecting to login page. . .");
-    }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
