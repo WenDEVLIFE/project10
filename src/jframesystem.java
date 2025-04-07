@@ -5,6 +5,7 @@
  */
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -17,6 +18,7 @@ public class jframesystem extends javax.swing.JFrame {
      */
     public jframesystem() {
         initComponents();
+        getContentPane().setBackground(Color.pink);
     }
 
     /**

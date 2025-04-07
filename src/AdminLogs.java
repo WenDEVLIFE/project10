@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import java.awt.*;
+
 /**
  *
  * @author Frouen Junior
@@ -14,6 +16,7 @@ public class AdminLogs extends javax.swing.JFrame {
      */
     public AdminLogs() {
         initComponents();
+        getContentPane().setBackground(Color.pink);
     }
 
     /**

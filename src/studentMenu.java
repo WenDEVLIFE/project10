@@ -1,5 +1,6 @@
 
 import javax.swing.JOptionPane;
+import java.awt.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -18,6 +19,7 @@ public class studentMenu extends javax.swing.JFrame {
      */
     public studentMenu() {
         initComponents();
+        getContentPane().setBackground(Color.pink);
     }
 
     /**

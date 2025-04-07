@@ -5,6 +5,7 @@
  */
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -17,6 +18,7 @@ public class staffMenu extends javax.swing.JFrame {
      */
     public staffMenu() {
         initComponents();
+        getContentPane().setBackground(Color.pink);
     }
 
     /**

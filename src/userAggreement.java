@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+import java.awt.*;
+
 /**
  *
  * @author lenar
@@ -15,6 +17,7 @@ public class userAggreement extends javax.swing.JFrame {
      */
     public userAggreement() {
         initComponents();
+        getContentPane().setBackground(Color.pink);
     }
 
     /**

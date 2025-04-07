@@ -5,6 +5,7 @@
  */
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  *
@@ -17,6 +18,8 @@ public class login extends javax.swing.JFrame {
      */
     public login() {
         initComponents();
+        setLocationRelativeTo(null); // Center the form on the screen
+        getContentPane().setBackground(Color.pink);
     }
 
     /**

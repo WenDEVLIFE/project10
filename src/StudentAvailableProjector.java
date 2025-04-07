@@ -3,6 +3,8 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import java.awt.*;
+
 /**
  *
  * @author Frouen Junior
@@ -14,6 +16,7 @@ public class StudentAvailableProjector extends javax.swing.JFrame {
      */
     public StudentAvailableProjector() {
         initComponents();
+        getContentPane().setBackground(Color.pink);
     }
 
     /**
