@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 
+import javax.swing.*;
+
 /**
  *
  * @author lenar
@@ -126,9 +128,32 @@ public class login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        userAggreement userAggreement = new userAggreement();
-        userAggreement.setVisible(true);
-        dispose();
+        String username = new String(jTextField1.getText());
+        String password = new String(jPasswordField1.getPassword());
+
+        System.out.println("Username: " + username);
+        System.out.println("Password: " + password);
+
+        if(username.equals("Staff") && password.equals("Staff")) {
+            userAggreement jframe = new userAggreement();
+            jframe.setVisible(true);
+
+            staffMenu jframe1 = new staffMenu();
+            jframe1.setVisible(true);
+            dispose();
+        }
+        else if (username.equals("Student") && password.equals("Student")) {
+            userAggreement jframe = new userAggreement();
+            jframe.setVisible(true);
+
+            studentMenu jframe2 = new studentMenu();
+            jframe2.setVisible(true);
+
+            dispose();
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Invalid username or password", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
