@@ -49,13 +49,13 @@ public class StudentReturnProjector extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "ProjectorID", "ProjectorName", "Status"
+                "Name", "ID", "Projector", "Case", "Presenter", "Extension"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
