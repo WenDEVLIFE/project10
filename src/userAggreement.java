@@ -17,7 +17,9 @@ public class userAggreement extends javax.swing.JFrame {
      */
     public userAggreement() {
         initComponents();
-        getContentPane().setBackground(Color.pink);
+        getContentPane().setBackground(new Color(0, 102, 204));
+        // Set the icon image
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
     }
 
     /**
@@ -40,22 +42,30 @@ public class userAggreement extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("User Aggreement");
 
-        jButton1.setText("Dis Aggree");
+        jButton1.setBackground(new java.awt.Color(255, 204, 0));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Dis-agree");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Aggree");
+        jButton2.setBackground(new java.awt.Color(255, 204, 0));
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("Agree");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
+        jLabel2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("WELCOME TO POC PROJECTOR LOG SYSTEM!");
 
         jLabel3.setText("By clicking \"Agree,\" you confirm that you have read, understood, and accepted the terms and conditions above.");

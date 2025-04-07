@@ -16,7 +16,9 @@ public class MarkProjector extends javax.swing.JFrame {
      */
     public MarkProjector() {
         initComponents();
-        getContentPane().setBackground(Color.pink);
+        getContentPane().setBackground(new Color(0, 102, 204));
+        // Set the icon image
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
     }
 
     /**
@@ -36,8 +38,12 @@ public class MarkProjector extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Returned Projector");
 
+        jButton5.setBackground(new java.awt.Color(204, 153, 0));
+        jButton5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton5.setText("Delete");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -45,6 +51,8 @@ public class MarkProjector extends javax.swing.JFrame {
             }
         });
 
+        jButton6.setBackground(new java.awt.Color(204, 153, 0));
+        jButton6.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton6.setText("Back");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -81,7 +89,7 @@ public class MarkProjector extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 529, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(27, 27, 27))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(181, 181, 181))))
         );
         layout.setVerticalGroup(
