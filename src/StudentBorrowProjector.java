@@ -107,6 +107,9 @@ public class StudentBorrowProjector extends javax.swing.JFrame {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
+         studentMenu menu = new studentMenu();
+        menu.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     /**

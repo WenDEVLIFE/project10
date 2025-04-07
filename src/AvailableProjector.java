@@ -106,7 +106,10 @@ public class AvailableProjector extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here
+         staffMenu jframe = new staffMenu();
+        jframe.setVisible(true);
+        dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
