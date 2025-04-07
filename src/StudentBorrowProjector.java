@@ -35,6 +35,7 @@ public class StudentBorrowProjector extends javax.swing.JFrame {
         jButton8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(0, 102, 204));
 
         jButton7.setText("Borrow");
         jButton7.addActionListener(new java.awt.event.ActionListener() {

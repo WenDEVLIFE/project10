@@ -16,7 +16,7 @@ public class StudentReturnProjector extends javax.swing.JFrame {
      */
     public StudentReturnProjector() {
         initComponents();
-        getContentPane().setBackground(Color.pink);
+        getContentPane().setBackground(new Color(0, 102, 204));
     }
 
     /**
