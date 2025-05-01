@@ -22,6 +22,7 @@ public class login extends javax.swing.JFrame {
     public login() {
         initComponents();
         setLocationRelativeTo(null); // Center the form on the screen
+        setTitle("Login");
      getContentPane().setBackground(new Color(5, 7, 153));
         // Set the icon image
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
@@ -63,7 +64,7 @@ public class login extends javax.swing.JFrame {
         jLabel3.setText("Password");
 
         jTextField1.setBackground(new java.awt.Color(255, 204, 0));
-        jTextField1.setForeground(new java.awt.Color(255, 204, 0));
+        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
@@ -71,6 +72,7 @@ public class login extends javax.swing.JFrame {
         });
 
         jPasswordField1.setBackground(new java.awt.Color(255, 204, 0));
+        jPasswordField1.setForeground(new java.awt.Color(0, 0, 0));
 
         jButton1.setBackground(new java.awt.Color(255, 204, 0));
         jButton1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
