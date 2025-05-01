@@ -21,7 +21,7 @@ public class StudentReturnProjector extends javax.swing.JFrame {
      */
     public StudentReturnProjector() {
         initComponents();
-        getContentPane().setBackground(new Color(0, 102, 204));
+        getContentPane().setBackground(new Color(5, 7, 153));
         // Set the icon image
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
     }
