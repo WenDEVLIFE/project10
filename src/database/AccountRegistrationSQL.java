@@ -69,4 +69,42 @@ public class AccountRegistrationSQL {
             e.printStackTrace();
         }
     }
+
+    // Insert staff account
+    public void insertStaffAccount(Map<String, Object> userdata){
+        String sql = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";
+        String insertStudent = "INSERT INTO student (user_id, student_id) VALUES (?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(MYSQLConnection.databaseUrl, MYSQLConnection.user, MYSQLConnection.password);
+             PreparedStatement pstmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+
+            // Insert into student_account table
+            pstmt.setString(1, (String) userdata.get("username"));
+            pstmt.setString(2, (String) userdata.get("password"));
+            pstmt.setString(3, "Staff");
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+        // Insert admin account
+    public void insertAdminAccount(Map<String, Object> userdata){
+        String sql = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";
+        String insertStudent = "INSERT INTO student (user_id, student_id) VALUES (?, ?)";
+
+        try (Connection conn = DriverManager.getConnection(MYSQLConnection.databaseUrl, MYSQLConnection.user, MYSQLConnection.password);
+             PreparedStatement pstmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
+
+            // Insert into student_account table
+            pstmt.setString(1, (String) userdata.get("username"));
+            pstmt.setString(2, (String) userdata.get("password"));
+            pstmt.setString(3, "Staff");
+            pstmt.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
