@@ -4,8 +4,11 @@ package UI;/*
  * and open the template in the editor.
  */
 
+import com.formdev.flatlaf.FlatIntelliJLaf;
 import javax.swing.*;
 import java.awt.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -223,7 +226,13 @@ public class login extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+    
             public void run() {
+                try {
+                    UIManager.setLookAndFeel(new FlatIntelliJLaf());
+                } catch (UnsupportedLookAndFeelException ex) {
+                    Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 new login().setVisible(true);
             }
         });

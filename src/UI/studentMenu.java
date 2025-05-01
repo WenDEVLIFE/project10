@@ -1,7 +1,12 @@
 package UI;
 
+import com.formdev.flatlaf.FlatIntelliJLaf;
 import javax.swing.JOptionPane;
 import java.awt.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -210,6 +215,11 @@ public class studentMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                 try {
+                    UIManager.setLookAndFeel(new FlatIntelliJLaf());
+                } catch (UnsupportedLookAndFeelException ex) {
+                    Logger.getLogger(staffMenu.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 new studentMenu().setVisible(true);
             }
         });

@@ -3,7 +3,12 @@ package UI;/*
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 
+import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.awt.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -137,6 +142,11 @@ public class StudentAvailableProjector extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                 try {
+                    UIManager.setLookAndFeel(new FlatIntelliJLaf());
+                } catch (UnsupportedLookAndFeelException ex) {
+                    Logger.getLogger(staffMenu.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 new StudentAvailableProjector().setVisible(true);
             }
         });
