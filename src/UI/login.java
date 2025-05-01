@@ -5,6 +5,8 @@ package UI;/*
  */
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import database.LoginDatabaseSQL;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.logging.Level;
@@ -183,36 +185,12 @@ public class login extends javax.swing.JFrame {
         System.out.println("Username: " + username);
         System.out.println("Password: " + password);
 
-        if(username.equals("Staff") && password.equals("Staff")) {
-            userAggreement jframe = new userAggreement();
-            jframe.setVisible(true);
-
-            staffMenu jframe1 = new staffMenu();
-            jframe1.setVisible(true);
-            dispose();
-        }
-        else if (username.equals("Student") && password.equals("Student")) {
-            userAggreement jframe = new userAggreement();
-            jframe.setVisible(true);
-
-            studentMenu jframe2 = new studentMenu();
-            jframe2.setVisible(true);
-
-            dispose();
+        if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter username and password", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
         }
 
-        else if (username.equals("Admin") && password.equals("Admin")) {
-            userAggreement jframe = new userAggreement();
-            jframe.setVisible(true);
-
-            adminMenu jframe3 = new adminMenu();
-            jframe3.setVisible(true);
-
-            dispose();
-        }
-        else{
-            JOptionPane.showMessageDialog(this, "Invalid username or password", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+        LoginDatabaseSQL.getInstance().LoginUser(username, password, this);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
