@@ -5,9 +5,13 @@
 package UI;
 
 import database.AccountRegistrationSQL;
+import model.UserModel;
 
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,13 +19,31 @@ import java.util.Map;
  * @author Administrator
  */
 public class ManageAccounts extends javax.swing.JFrame {
-
+    DefaultTableModel model;
+    List<UserModel> userList = new ArrayList<>();
     /**
      * Creates new form ManageAccounts
      */
     public ManageAccounts() {
         initComponents();
         getContentPane().setBackground(new Color(5, 7, 153));
+
+        String [] columnNames = {"ID", "Username", "Password", "Role"};
+        model = new DefaultTableModel(columnNames, 0);
+        jTable1.setModel(model);
+
+        // Load data into the table
+        loadData();
+    }
+
+    private void loadData() {
+        userList = AccountRegistrationSQL.getInstance().getUserAccount();
+        model.setRowCount(0); // Clear existing rows
+
+        for (UserModel user : userList) {
+            Object[] row = {user.getId(), user.getUsername(), user.getPassword(), user.getRole()};
+            model.addRow(row);
+        }
     }
 
     /**
@@ -155,13 +177,28 @@ public class ManageAccounts extends javax.swing.JFrame {
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         // TODO add your handling code here:
-        studentMenu menu = new studentMenu();
+        adminMenu menu = new adminMenu();
         menu.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // TODO add your handling code here:
+
+
+        int selectedRow = jTable1.getSelectedRow();
+
+        if (selectedRow != -1) {
+
+            int option = javax.swing.JOptionPane.showConfirmDialog(this, "Are you sure you want to delete this account?", "Delete Account", javax.swing.JOptionPane.YES_NO_OPTION);
+            if (option == javax.swing.JOptionPane.YES_OPTION) {
+                int userId = (int) model.getValueAt(selectedRow, 0); // Assuming the ID is in the first column
+                AccountRegistrationSQL.getInstance().deleteAccount(userId);
+                model.removeRow(selectedRow);
+                javax.swing.JOptionPane.showMessageDialog(this, "Account deleted successfully!", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Please select an account to delete.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_jButton16ActionPerformed
 
 

@@ -1,7 +1,11 @@
 package database;
 
+import model.UserModel;
+
 import javax.swing.*;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class AccountRegistrationSQL {
@@ -115,6 +119,53 @@ public class AccountRegistrationSQL {
             }
 
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<UserModel> getUserAccount(){
+        String sql = "SELECT * FROM users";
+        List<UserModel> userList = new ArrayList<>();
+
+        try (java.sql.Connection connection = java.sql.DriverManager.getConnection(
+                MYSQLConnection.databaseUrl, MYSQLConnection.user, MYSQLConnection.password);
+             java.sql.PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            // Execute the query
+            try (java.sql.ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    String id = resultSet.getString("user_id");
+                    String username = resultSet.getString("username");
+                    String password = resultSet.getString("password");
+                    String role = resultSet.getString("role");
+
+                    UserModel userModel = new UserModel(id, username, password, role);
+                    userList.add(userModel);
+                }
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return userList;
+
+    }
+
+    public void deleteAccount(int userId) {
+        String sql = "DELETE FROM users WHERE user_id = ?";
+        try (Connection conn = DriverManager.getConnection(MYSQLConnection.databaseUrl, MYSQLConnection.user, MYSQLConnection.password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setInt(1, userId);
+            int rowsAffected = pstmt.executeUpdate();
+            if (rowsAffected > 0) {
+                System.out.println("Account deleted successfully.");
+                JOptionPane .showMessageDialog(null, "Account deleted successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                System.out.println("No account found with the given user ID.");
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
