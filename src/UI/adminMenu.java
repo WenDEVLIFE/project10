@@ -243,6 +243,9 @@ public class adminMenu extends javax.swing.JFrame {
     // This will navigate to the manage accounts
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        ManageAccounts manage = new ManageAccounts();
+        manage.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**

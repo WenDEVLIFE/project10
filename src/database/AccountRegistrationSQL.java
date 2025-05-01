@@ -1,5 +1,6 @@
 package database;
 
+import javax.swing.*;
 import java.sql.*;
 import java.util.Map;
 
@@ -71,7 +72,7 @@ public class AccountRegistrationSQL {
     }
 
     // Insert staff account
-    public void insertStaffAccount(Map<String, Object> userdata){
+    public void insertStaffAccount(Map<String, Object> userdata, JDialog dialog){
         String sql = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";
         String insertStudent = "INSERT INTO student (user_id, student_id) VALUES (?, ?)";
 
@@ -82,7 +83,13 @@ public class AccountRegistrationSQL {
             pstmt.setString(1, (String) userdata.get("username"));
             pstmt.setString(2, (String) userdata.get("password"));
             pstmt.setString(3, "Staff");
-            pstmt.executeUpdate();
+
+            int rowsAffected = pstmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                // Retrieve the generated user_id
+               dialog.dispose();
+            }
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -90,9 +97,8 @@ public class AccountRegistrationSQL {
     }
 
         // Insert admin account
-    public void insertAdminAccount(Map<String, Object> userdata){
+    public void insertAdminAccount(Map<String, Object> userdata, JDialog dialog){
         String sql = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";
-        String insertStudent = "INSERT INTO student (user_id, student_id) VALUES (?, ?)";
 
         try (Connection conn = DriverManager.getConnection(MYSQLConnection.databaseUrl, MYSQLConnection.user, MYSQLConnection.password);
              PreparedStatement pstmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -100,8 +106,14 @@ public class AccountRegistrationSQL {
             // Insert into student_account table
             pstmt.setString(1, (String) userdata.get("username"));
             pstmt.setString(2, (String) userdata.get("password"));
-            pstmt.setString(3, "Staff");
-            pstmt.executeUpdate();
+            pstmt.setString(3, "Admin");
+            int rowsAffected = pstmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                // Retrieve the generated user_id
+                dialog.dispose();
+            }
+
 
         } catch (SQLException e) {
             e.printStackTrace();
