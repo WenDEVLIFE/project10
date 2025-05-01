@@ -5,8 +5,12 @@ package UI;/*
  */
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import database.AccountRegistrationSQL;
+
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -218,20 +222,30 @@ public class jframesystem extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
          String username = jTextField1.getText();
-        String id = jTextField2.getText();
+        String student_id = jTextField2.getText();
         String password = new String(jPasswordField1.getPassword());
         String confirmPassword = new String(jPasswordField2.getPassword());
 
-        if (username.isEmpty() || id.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
+        if (username.isEmpty() || student_id.isEmpty() || password.isEmpty() || confirmPassword.isEmpty()) {
             System.out.println("Please fill in all fields.");
             JOptionPane.showMessageDialog(this, "Please fill in all fields.");
         } else if (!password.equals(confirmPassword)) {
             System.out.println("Passwords do not match.");
             JOptionPane.showMessageDialog(this, "Passwords do not match.");
-        } else {
+        }
+        else if (AccountRegistrationSQL.getInstance().checkIfUsernameExist(username)) {
+            System.out.println("Username already exists.");
+            JOptionPane.showMessageDialog(this, "Username already exists.");
+        }
+        else {
 
             // TODO : added a function where it will store user from the database
             System.out.println("Sign-Up Successful for: " + username);
+            Map<String, Object> userdata = new HashMap<>();
+            userdata.put("username", username);
+            userdata.put("student_id", student_id);
+            userdata.put("password", password);
+            AccountRegistrationSQL.getInstance().insertStudentAccount(userdata);
             jTextField1.setText("");
             jTextField2.setText("");
             jPasswordField1.setText("");
