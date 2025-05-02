@@ -23,6 +23,10 @@ public class BorrowingHistory extends javax.swing.JFrame {
     public BorrowingHistory() {
         initComponents();
 
+        getContentPane().setBackground(new Color(5, 7, 153));
+
+        String [] columnNames = {"Student ID", "Name", "Year & Section", "Borrow"};
+
 
         // Yellow color for the table
         jTable1.setBackground(new Color( 5, 7, 153));

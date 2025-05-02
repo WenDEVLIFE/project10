@@ -4,17 +4,24 @@ package UI;/*
  */
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import database.ProjectorSQL;
+import model.ProjectorModel;
+
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Frouen Junior
  */
 public class MarkProjector extends javax.swing.JFrame {
-
+    DefaultTableModel model;
+    List<ProjectorModel> projectorList = new ArrayList<>();
     /**
      * Creates new form MarkProjector
      */
@@ -24,7 +31,13 @@ public class MarkProjector extends javax.swing.JFrame {
         // Set the icon image
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
 
-        // Yellow color for the table
+        // Set the table model
+        String [] columnNames = {"ProjectorID", "ProjectorName", "Status"};
+        model = new DefaultTableModel(columnNames, 0);
+        jTable1.setModel(model);
+
+        loadData();
+
         jTable1.setBackground(new Color( 5, 7, 153));
         jTable1.setForeground(Color.white);
 
@@ -40,7 +53,22 @@ public class MarkProjector extends javax.swing.JFrame {
         jTable1.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 12));
 
     }
+    private void loadData() {
 
+        model.setRowCount(0); // Clear existing rows
+
+        projectorList = ProjectorSQL.getInstance().getProjectors();
+
+        if (projectorList != null) {
+            for (ProjectorModel projector : projectorList) {
+                String status = projector.getStatus().equalsIgnoreCase("Available") ? "Returned" : projector.getStatus();
+                Object[] row = {projector.getId(), projector.getProjectorName(), status};
+                model.addRow(row);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "No projectors found.");
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
