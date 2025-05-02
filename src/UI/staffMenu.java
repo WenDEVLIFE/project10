@@ -197,7 +197,7 @@ public class staffMenu extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         
-        AvailableProjector projector = new AvailableProjector();
+        Admin_AvailableProjector projector = new Admin_AvailableProjector();
         projector.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed

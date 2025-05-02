@@ -208,7 +208,7 @@ public class adminMenu extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        AvailableProjector project = new AvailableProjector();
+        Admin_AvailableProjector project = new Admin_AvailableProjector();
         project.setVisible(true);
         
         dispose();

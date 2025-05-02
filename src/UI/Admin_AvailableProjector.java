@@ -23,13 +23,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Frouen Junior
  */
-public class AvailableProjector extends javax.swing.JFrame {
+public class Admin_AvailableProjector extends javax.swing.JFrame {
     DefaultTableModel model;
     List <ProjectorModel> projectorList = new ArrayList<>();
     /**
      * Creates new form AvailableProjector
      */
-    public AvailableProjector() {
+    public Admin_AvailableProjector() {
         initComponents();
         getContentPane().setBackground(new Color(5, 7, 153));
         // Set the icon image
@@ -187,7 +187,7 @@ public class AvailableProjector extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here
-         staffMenu jframe = new staffMenu();
+         adminMenu jframe = new adminMenu();
         jframe.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -272,14 +272,15 @@ public class AvailableProjector extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AvailableProjector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Admin_AvailableProjector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AvailableProjector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Admin_AvailableProjector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AvailableProjector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Admin_AvailableProjector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AvailableProjector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Admin_AvailableProjector.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -290,7 +291,7 @@ public class AvailableProjector extends javax.swing.JFrame {
                 } catch (UnsupportedLookAndFeelException ex) {
                     Logger.getLogger(staffMenu.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                new AvailableProjector().setVisible(true);
+                new Admin_AvailableProjector().setVisible(true);
             }
         });
     }
