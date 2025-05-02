@@ -180,7 +180,7 @@ public class studentMenu extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-         StudentBorrowProjector avail = new StudentBorrowProjector();
+         BorrowingForm avail = new BorrowingForm();
         avail.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
