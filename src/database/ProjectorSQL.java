@@ -144,6 +144,32 @@ public class ProjectorSQL {
 
     }
 
+    public List<ProjectorModel> getProjectorsUnvailable() {
+        List<ProjectorModel> projectors = new ArrayList<>();
+        String sql = "SELECT * FROM projector_table WHERE status = 'Unavailable'";
+
+        try (java.sql.Connection connection = java.sql.DriverManager.getConnection(
+                MYSQLConnection.databaseUrl, MYSQLConnection.user, MYSQLConnection.password);
+             java.sql.PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             java.sql.ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                String projectorID = resultSet.getString("projector_id");
+                String projectorName = resultSet.getString("projector_name");
+                String status = resultSet.getString("status");
+
+                ProjectorModel projector = new ProjectorModel(projectorID, projectorName, status);
+                projectors.add(projector);
+            }
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error retrieving available projectors: " + e.getMessage());
+        }
+
+        return projectors;
+
+    }
+
     public void borrowProjector(String studentName, String studentID, String course, String projectorName) {
         String sql = "UPDATE projector_table SET status = 'Unavailable' WHERE projector_name = ?";
         String insertLogs = "INSERT INTO log_table (description) VALUES (?)";
@@ -201,6 +227,60 @@ public class ProjectorSQL {
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
             System.out.println("Error borrowing projector: " + e.getMessage());
+        }
+    }
+
+    public void insertReturnProjector(String projectorName, String studentName, String studentId, String yearCourseSection) {
+        String sql = "UPDATE projector_table SET status = 'Available' WHERE projector_name = ?";
+        String insertLogs = "INSERT INTO log_table (description) VALUES (?)";
+        String insertReturnHistory = "INSERT INTO return_table (name, student_id, year_and_course, projector_name) VALUES (?, ?, ?, ?)";
+
+        try (java.sql.Connection connection = java.sql.DriverManager.getConnection(
+                MYSQLConnection.databaseUrl, MYSQLConnection.user, MYSQLConnection.password);
+             java.sql.PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, projectorName);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Projector returned successfully.");
+                JOptionPane.showMessageDialog(null, "Projector returned successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                // Insert log entry
+                try (java.sql.PreparedStatement logStatement = connection.prepareStatement(insertLogs)) {
+                    logStatement.setString(1, "Projector " + projectorName + " returned by student " + studentName + " (" + studentId + ") for course " + yearCourseSection);
+                    logStatement.executeUpdate();
+                } catch (java.sql.SQLException e) {
+                    e.printStackTrace();
+                    System.out.println("Error inserting log: " + e.getMessage());
+                }
+
+                // Insert return history
+                try (java.sql.PreparedStatement returnStatement = connection.prepareStatement(insertReturnHistory)) {
+                    returnStatement.setString(1, studentName);
+                    returnStatement.setString(2, studentId);
+                    returnStatement.setString(3, yearCourseSection);
+                    returnStatement.setString(4, projectorName);
+
+                    int returnRowsAffected = returnStatement.executeUpdate();
+
+                    if (returnRowsAffected > 0) {
+                        System.out.println("Return history updated successfully.");
+                    } else {
+                        System.out.println("Failed to update return history.");
+                    }
+                } catch (java.sql.SQLException e) {
+                    e.printStackTrace();
+                    System.out.println("Error inserting return history: " + e.getMessage());
+                }
+            } else {
+                System.out.println("Failed to return projector.");
+                JOptionPane.showMessageDialog(null, "Failed to return projector.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error returning projector: " + e.getMessage());
         }
     }
 }
