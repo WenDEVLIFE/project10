@@ -45,7 +45,8 @@ public class ProjectorSQL {
 
             if (rowsAffected > 0) {
                 System.out.println("Projector added successfully.");
-                JOptionPane.showMessageDialog(null, "Projector added successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoresize.jpg")); // Load your ima
+                JOptionPane.showMessageDialog(null, "Projector added successfully.", "Success", JOptionPane.INFORMATION_MESSAGE, icon);
 
                 // Insert log entry
                 try (java.sql.PreparedStatement logStatement = connection.prepareStatement(insertLogs)) {
@@ -57,7 +58,8 @@ public class ProjectorSQL {
                 }
             } else {
                 System.out.println("Failed to add projector.");
-                JOptionPane.showMessageDialog(null, "Failed to add projector.", "Error", JOptionPane.ERROR_MESSAGE);
+                ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoresize.jpg")); // Load your ima
+                JOptionPane.showMessageDialog(null, "Failed to add projector.", "Error", JOptionPane.ERROR_MESSAGE, icon);
             }
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
@@ -105,7 +107,8 @@ public class ProjectorSQL {
 
             if (rowsAffected > 0) {
                 System.out.println("Projector deleted successfully.");
-                JOptionPane.showMessageDialog(null, "Projector deleted successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoresize.jpg")); // Load your ima
+                JOptionPane.showMessageDialog(null, "Projector deleted successfully.", "Success", JOptionPane.INFORMATION_MESSAGE, icon);
 
                 // Insert log entry
                 try (java.sql.PreparedStatement logStatement = connection.prepareStatement(insertLogs)) {
@@ -117,7 +120,8 @@ public class ProjectorSQL {
                 }
             } else {
                 System.out.println("Failed to delete projector.");
-                JOptionPane.showMessageDialog(null, "Failed to delete projector.", "Error", JOptionPane.ERROR_MESSAGE);
+                ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoresize.jpg")); // Load your ima
+                JOptionPane.showMessageDialog(null, "Failed to delete projector.", "Error", JOptionPane.ERROR_MESSAGE, icon);
             }
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
@@ -229,7 +233,8 @@ public class ProjectorSQL {
                 }
             } else {
                 System.out.println("Failed to borrow projector.");
-                JOptionPane.showMessageDialog(null, "Failed to borrow projector.", "Error", JOptionPane.ERROR_MESSAGE);
+                ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoresize.jpg")); // Load your image
+                JOptionPane.showMessageDialog(null, "Failed to borrow projector.", "Error", JOptionPane.ERROR_MESSAGE, icon);
             }
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
@@ -252,7 +257,8 @@ public class ProjectorSQL {
 
             if (rowsAffected > 0) {
                 System.out.println("Projector returned successfully.");
-                JOptionPane.showMessageDialog(null, "Projector returned successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoresize.jpg")); // Load your image
+                JOptionPane.showMessageDialog(null, "Projector returned successfully.", "Success", JOptionPane.INFORMATION_MESSAGE, icon);
 
                 // Insert log entry
                 try (java.sql.PreparedStatement logStatement = connection.prepareStatement(insertLogs)) {
@@ -283,7 +289,8 @@ public class ProjectorSQL {
                 }
             } else {
                 System.out.println("Failed to return projector.");
-                JOptionPane.showMessageDialog(null, "Failed to return projector.", "Error", JOptionPane.ERROR_MESSAGE);
+                ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoresize.jpg")); // Load your image
+                JOptionPane.showMessageDialog(null, "Failed to return projector.", "Error", JOptionPane.ERROR_MESSAGE, icon);
             }
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
@@ -305,7 +312,8 @@ public class ProjectorSQL {
 
             if (rowsAffected > 0) {
                 System.out.println("Request sent successfully.");
-                JOptionPane.showMessageDialog(null, "Request sent successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoresize.jpg")); // Load your image
+                JOptionPane.showMessageDialog(null, "Request sent successfully.", "Success", JOptionPane.INFORMATION_MESSAGE, icon);
 
                 // Insert log entry
                 try (java.sql.PreparedStatement logStatement = connection.prepareStatement(insertLogs)) {
@@ -317,7 +325,8 @@ public class ProjectorSQL {
                 }
             } else {
                 System.out.println("Failed to send request.");
-                JOptionPane.showMessageDialog(null, "Failed to send request.", "Error", JOptionPane.ERROR_MESSAGE);
+                ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoresize.jpg")); // Load your image
+                JOptionPane.showMessageDialog(null, "Failed to send request.", "Error", JOptionPane.ERROR_MESSAGE, icon);
             }
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
@@ -341,7 +350,8 @@ public class ProjectorSQL {
             if (rowsAffected > 0) {
                 System.out.println("Issue inserted successfully.");
 
-                JOptionPane.showMessageDialog(null, "Issue inserted successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoresize.jpg")); // Load your image
+                JOptionPane.showMessageDialog(null, "Issue inserted successfully.", "Success", JOptionPane.INFORMATION_MESSAGE, icon);
 
 
                 // Insert into log_table
@@ -399,7 +409,8 @@ public class ProjectorSQL {
 
             if (rowsAffected > 0) {
                 System.out.println("Projector status updated successfully.");
-                JOptionPane.showMessageDialog(null, "Projector status updated successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+                ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoresize.jpg")); // Load your image
+                JOptionPane.showMessageDialog(null, "Projector status updated successfully.", "Success", JOptionPane.INFORMATION_MESSAGE, icon);
 
                 // Insert log entry
                 try (java.sql.PreparedStatement logStatement = connection.prepareStatement(insertLogs)) {
@@ -411,8 +422,8 @@ public class ProjectorSQL {
                 }
             } else {
                 System.out.println("Failed to update projector status.");
-                JOptionPane.showMessageDialog(null, "Failed to update projector status.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
+                ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoresize.jpg")); // Load your image
+                JOptionPane.showMessageDialog(null, "Failed to update projector status.", "Error", JOptionPane.ERROR_MESSAGE, icon);     }
         } catch (java.sql.SQLException e) {
             e.printStackTrace();
             System.out.println("Error updating projector status: " + e.getMessage());

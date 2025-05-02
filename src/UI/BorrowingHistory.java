@@ -37,9 +37,6 @@ public class BorrowingHistory extends javax.swing.JFrame {
         model = new DefaultTableModel(columnNames, 0);
         jTable1.setModel(model);
 
-        // Sample data for the table
-        loadData();
-
 
         // Yellow color for the table
         jTable1.setBackground(new Color( 5, 7, 153));
@@ -55,6 +52,9 @@ public class BorrowingHistory extends javax.swing.JFrame {
 
         // Set the table header font
         jTable1.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 12));
+
+        // Sample data for the table
+        loadData();
 
     }
 

@@ -37,7 +37,6 @@ public class AdminMarkProjector extends javax.swing.JFrame {
         model = new DefaultTableModel(columnNames, 0);
         jTable1.setModel(model);
 
-        loadData();
 
         jTable1.setBackground(new Color( 5, 7, 153));
         jTable1.setForeground(Color.white);
@@ -52,6 +51,8 @@ public class AdminMarkProjector extends javax.swing.JFrame {
 
         // Set the table header font
         jTable1.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 12));
+
+        loadData();
     }
 
     private void loadData() {

@@ -2,6 +2,8 @@ package database;
 
 import UI.*;
 
+import javax.swing.*;
+
 public class LoginDatabaseSQL {
     private static volatile LoginDatabaseSQL instance;
 
@@ -60,6 +62,9 @@ public class LoginDatabaseSQL {
                         jframe2.setVisible(true);
                         login.dispose();
                     }
+
+                    ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoresize.jpg")); // Load your ima
+                    javax.swing.JOptionPane.showMessageDialog(login, "Login successful! User ID: " + username, "Login Successful", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);
 
 
                 } else {
