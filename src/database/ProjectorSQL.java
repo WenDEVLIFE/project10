@@ -382,4 +382,39 @@ public class ProjectorSQL {
 
         return issues;
     }
+
+    public void updateToAvailable(String projectorID, String status) {
+        String sql = "UPDATE projector_table SET status = ? WHERE projector_id = ?";
+        String insertLogs = "INSERT INTO log_table (description) VALUES (?)";
+
+        try (java.sql.Connection connection = java.sql.DriverManager.getConnection(
+                MYSQLConnection.databaseUrl, MYSQLConnection.user, MYSQLConnection.password);
+             java.sql.PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, status);
+            preparedStatement.setString(2, projectorID);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Projector status updated successfully.");
+                JOptionPane.showMessageDialog(null, "Projector status updated successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                // Insert log entry
+                try (java.sql.PreparedStatement logStatement = connection.prepareStatement(insertLogs)) {
+                    logStatement.setString(1, "Projector with ID " + projectorID + " status updated to " + status);
+                    logStatement.executeUpdate();
+                } catch (java.sql.SQLException e) {
+                    e.printStackTrace();
+                    System.out.println("Error inserting log: " + e.getMessage());
+                }
+            } else {
+                System.out.println("Failed to update projector status.");
+                JOptionPane.showMessageDialog(null, "Failed to update projector status.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error updating projector status: " + e.getMessage());
+        }
+    }
 }

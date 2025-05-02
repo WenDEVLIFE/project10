@@ -189,6 +189,28 @@ public class AdminMarkProjector extends javax.swing.JFrame {
     // This is for return mark
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
 
+        int selectedRow = jTable1.getSelectedRow();
+
+        if (selectedRow != -1) {
+            String projectorID = jTable1.getValueAt(selectedRow, 0).toString();
+            String statusdata = jTable1.getValueAt(selectedRow, 2).toString();
+            String status = "Available";
+
+          if (statusdata.equalsIgnoreCase("Returned")) {
+                JOptionPane.showMessageDialog(this, "Projector is already marked as returned.");
+                return;
+            }
+
+            // Update the projector status in the database
+            ProjectorSQL.getInstance().updateToAvailable(projectorID,status);
+
+            // Reload the data to reflect the changes
+            loadData();
+
+            JOptionPane.showMessageDialog(this, "Projector marked as returned successfully.");
+        } else {
+            JOptionPane.showMessageDialog(this, "Please select a projector to mark as returned.");
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
