@@ -82,4 +82,39 @@ public class ProjectorSQL {
 
         return projectors;
     }
+
+    // Added delete function to remove a projector from the database
+    public void deleteProjector(String projectorId) {
+        String sql = "DELETE FROM projector_table WHERE projector_id = ?";
+        String insertLogs = "INSERT INTO log_table (description) VALUES (?)";
+
+        try (java.sql.Connection connection = java.sql.DriverManager.getConnection(
+                MYSQLConnection.databaseUrl, MYSQLConnection.user, MYSQLConnection.password);
+             java.sql.PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, projectorId);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Projector deleted successfully.");
+                JOptionPane.showMessageDialog(null, "Projector deleted successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                // Insert log entry
+                try (java.sql.PreparedStatement logStatement = connection.prepareStatement(insertLogs)) {
+                    logStatement.setString(1, "Projector with ID " + projectorId + " deleted successfully.");
+                    logStatement.executeUpdate();
+                } catch (java.sql.SQLException e) {
+                    e.printStackTrace();
+                    System.out.println("Error inserting log: " + e.getMessage());
+                }
+            } else {
+                System.out.println("Failed to delete projector.");
+                JOptionPane.showMessageDialog(null, "Failed to delete projector.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error deleting projector: " + e.getMessage());
+        }
+    }
 }

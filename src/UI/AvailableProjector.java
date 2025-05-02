@@ -166,11 +166,23 @@ public class AvailableProjector extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // Added delete projector from the database
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        staffMenu jframe = new staffMenu();
-        jframe.setVisible(true);
-        dispose();
+
+        int selectedRow = jTable1.getSelectedRow();
+
+        if (selectedRow != -1) {
+            // Get the projector ID from the selected row
+            String projectorId = jTable1.getValueAt(selectedRow, 0).toString();
+
+            // Call the method to delete the projector
+            ProjectorSQL.getInstance().deleteProjector(projectorId);
+            loadData();
+            javax.swing.JOptionPane.showMessageDialog(this, "Projector deleted successfully.", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Please select a projector to delete.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+        }
+      
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
