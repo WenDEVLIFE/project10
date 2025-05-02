@@ -1,6 +1,10 @@
 package database;
 
+import model.ProjectorModel;
+
 import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProjectorSQL {
 
@@ -52,5 +56,30 @@ public class ProjectorSQL {
             e.printStackTrace();
             System.out.println("Error adding projector: " + e.getMessage());
         }
+    }
+
+    public List<ProjectorModel> getProjectors() {
+        List<ProjectorModel> projectors = new ArrayList<>();
+        String sql = "SELECT * FROM projector_table";
+
+        try (java.sql.Connection connection = java.sql.DriverManager.getConnection(
+                MYSQLConnection.databaseUrl, MYSQLConnection.user, MYSQLConnection.password);
+             java.sql.PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             java.sql.ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                String projectorID = resultSet.getString("projector_id");
+                String projectorName = resultSet.getString("projector_name");
+                String status = resultSet.getString("status");
+
+                ProjectorModel projector = new ProjectorModel(projectorID, projectorName, status);
+                projectors.add(projector);
+            }
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error retrieving projectors: " + e.getMessage());
+        }
+
+        return projectors;
     }
 }

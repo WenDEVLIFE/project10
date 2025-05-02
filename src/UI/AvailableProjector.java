@@ -6,21 +6,26 @@ package UI;/*
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import database.AccountRegistrationSQL;
 import database.ProjectorSQL;
+import model.ProjectorModel;
 
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Frouen Junior
  */
 public class AvailableProjector extends javax.swing.JFrame {
-
+    DefaultTableModel model;
+    List <ProjectorModel> projectorList = new ArrayList<>();
     /**
      * Creates new form AvailableProjector
      */
@@ -29,6 +34,13 @@ public class AvailableProjector extends javax.swing.JFrame {
         getContentPane().setBackground(new Color(5, 7, 153));
         // Set the icon image
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
+
+        String [] columnNames = {"ProjectorID", "ProjectorName", "Status"};
+        model = new DefaultTableModel(columnNames, 0);
+        jTable1.setModel(model);
+
+        // Load the projector data into the table
+        loadData();
     }
 
     /**
@@ -174,6 +186,19 @@ public class AvailableProjector extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    void loadData() {
+        // Clear the existing data in the table
+        model.setRowCount(0);
+
+        // Get the projector data from the database
+        projectorList = ProjectorSQL.getInstance().getProjectors();
+
+        // Populate the table with the projector data
+        for  ( ProjectorModel projector : projectorList) {
+            Object[] row = {projector.getId(), projector.getProjectorName(), projector.getStatus()};
+            model.addRow(row);
+        }
+    }
     private void loadAddProjectorDialog() {
 
         javax.swing.JPanel panel = new javax.swing.JPanel();
@@ -208,6 +233,7 @@ public class AvailableProjector extends javax.swing.JFrame {
             } else {
                 // Call the method to add the projector
                 ProjectorSQL.getInstance().addProjector(projectorName);
+                loadData();
                 javax.swing.JOptionPane.showMessageDialog(this, "Projector added successfully.", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             }
         }
