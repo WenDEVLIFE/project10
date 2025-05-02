@@ -4,11 +4,15 @@ package UI;/*
  */
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import database.ProjectorSQL;
+import model.ProjectorModel;
+
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import java.util.List;
+import javax.swing.*;
 
 /**
  *
@@ -16,6 +20,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class BorrowingForm extends javax.swing.JFrame {
 
+    List<ProjectorModel> projectorList = new ArrayList<>();
     /**
      * Creates new form BorrowingForm
      */
@@ -24,6 +29,8 @@ public class BorrowingForm extends javax.swing.JFrame {
         getContentPane().setBackground(new Color(5, 7, 153));
         // Set the icon image
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
+
+        loadList();
     }
 
     /**
@@ -145,15 +152,12 @@ public class BorrowingForm extends javax.swing.JFrame {
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel5)
                                 .addGap(20, 20, 20)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addGap(2, 2, 2)
-                                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 522, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jPasswordField2, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(176, Short.MAX_VALUE))))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPasswordField2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jComboBox1, 0, 446, Short.MAX_VALUE))
+                        .addContainerGap(252, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -199,24 +203,52 @@ public class BorrowingForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    // This is for the borrow
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        staffMenu jframe = new staffMenu();
-        jframe.setVisible(true);
-        dispose();
+
+        String studentName = jTextField1.getText();
+        String studentID = jPasswordField1.getText();
+        String course = jPasswordField2.getText();
+        String projectorName = (String) jComboBox1.getSelectedItem();
+
+        if (studentName.isEmpty() || studentID.isEmpty() || course.isEmpty()) {
+            // Show an error message if any field is empty
+            JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        // Call the method to borrow the projector
+        ProjectorSQL.getInstance().borrowProjector(studentName, studentID, course, projectorName);
+        loadList();
+        jTextField1.setText("");
+        jPasswordField1.setText("");
+        jPasswordField2.setText("");
+        jComboBox1.setSelectedIndex(0);
+    
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-         staffMenu jframe = new staffMenu();
+         studentMenu jframe = new studentMenu();
         jframe.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
+
+    void loadList(){
+
+        projectorList =   ProjectorSQL.getInstance().getProjectorsAvailable();
+
+        jComboBox1.removeAllItems();
+
+        for (ProjectorModel projector : projectorList) {
+            jComboBox1.addItem(projector.getProjectorName());
+        }
+
+    }
     /**
      * @param args the command line arguments
      */

@@ -51,6 +51,7 @@ public class MarkProjector extends javax.swing.JFrame {
 
         jButton5.setBackground(new java.awt.Color(204, 153, 0));
         jButton5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Mark as Returned");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,6 +61,7 @@ public class MarkProjector extends javax.swing.JFrame {
 
         jButton6.setBackground(new java.awt.Color(204, 153, 0));
         jButton6.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Back");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,13 +71,13 @@ public class MarkProjector extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
             },
             new String [] {
-                "Name", "ID", "Projector", "Case", "Presenter", "Extension"
+                "ProjectorID", "ProjectorName", "Status"
             }
         ));
         jScrollPane1.setViewportView(jTable1);

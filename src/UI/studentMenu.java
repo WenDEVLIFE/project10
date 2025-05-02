@@ -86,7 +86,7 @@ public class studentMenu extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(255, 204, 0));
         jButton4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Borrow Peojector");
+        jButton4.setText("Borrow Projector");
         jButton4.setMaximumSize(new java.awt.Dimension(151, 23));
         jButton4.setMinimumSize(new java.awt.Dimension(151, 23));
         jButton4.addActionListener(new java.awt.event.ActionListener() {

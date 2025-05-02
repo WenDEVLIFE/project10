@@ -154,7 +154,7 @@ public class Staff_AvailableProjector extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here
-        Staff_AvailableProjector jframe = new Staff_AvailableProjector();
+        staffMenu jframe = new staffMenu();
         jframe.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -229,6 +229,8 @@ public class Staff_AvailableProjector extends javax.swing.JFrame {
             model.addRow(row);
         }
     }
+
+
     private void loadAddProjectorDialog() {
 
         javax.swing.JPanel panel = new javax.swing.JPanel();
