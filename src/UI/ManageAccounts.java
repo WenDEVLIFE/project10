@@ -70,7 +70,7 @@ public class ManageAccounts extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("MANAGE ACCOUNTS");
+        jLabel8.setText("Manage Accounts");
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pocpls_resize.jpg"))); // NOI18N
 
@@ -205,43 +205,28 @@ public class ManageAccounts extends javax.swing.JFrame {
     // This is for add account
     private void intializeCreateDialog() {
 
-        javax.swing.JPanel mainPanel = new javax.swing.JPanel(new java.awt.BorderLayout(10, 10));
-        mainPanel.setBackground(new java.awt.Color(5, 7, 153));
-
-        // Add the left logo
-        javax.swing.JLabel leftLogo = new javax.swing.JLabel(new javax.swing.ImageIcon(getClass().getResource("/images/logoresize.jpg")));
-        mainPanel.add(leftLogo, java.awt.BorderLayout.WEST);
-
-        // Add the right logo
-        javax.swing.JLabel rightLogo = new javax.swing.JLabel(new javax.swing.ImageIcon(getClass().getResource("/images/pocpls.jpg")));
-        mainPanel.add(rightLogo, java.awt.BorderLayout.EAST);
-
-        // Create the center panel for input fields
-        javax.swing.JPanel centerPanel = new javax.swing.JPanel(new java.awt.GridLayout(0, 2, 5, 5));
-        centerPanel.add(new javax.swing.JLabel("Enter Projector Name"));
-        javax.swing.JTextField projectorField = new javax.swing.JTextField();
-        centerPanel.add(projectorField);
-
+        javax.swing.JPanel panel = new javax.swing.JPanel();
+        panel.setLayout(new java.awt.GridLayout(0, 2, 5, 5)); // Grid layout for labels and fields
 
 // Add input fields
-        mainPanel.add(new javax.swing.JLabel("Enter Username"));
+        panel.add(new javax.swing.JLabel("Enter Username"));
         javax.swing.JTextField usernameField = new javax.swing.JTextField();
-        mainPanel.add(usernameField);
+        panel.add(usernameField);
 
-        mainPanel.add(new javax.swing.JLabel("Enter Password"));
+        panel.add(new javax.swing.JLabel("Enter Password"));
         javax.swing.JPasswordField passwordField = new javax.swing.JPasswordField();
-        mainPanel.add(passwordField);
+        panel.add(passwordField);
 
-        mainPanel.add(new javax.swing.JLabel("Select Role"));
+        panel.add(new javax.swing.JLabel("Select Role"));
         String[] roles = {"Admin", "Staff"};
         javax.swing.JComboBox<String> roleComboBox = new javax.swing.JComboBox<>(roles);
-        mainPanel.add(roleComboBox);
+        panel.add(roleComboBox);
 
         // Show the dialog
         Object[] options = {"Submit", "Cancel"};
 
         javax.swing.JOptionPane optionPane = new javax.swing.JOptionPane(
-                mainPanel,
+                panel,
                 javax.swing.JOptionPane.PLAIN_MESSAGE,
                 javax.swing.JOptionPane.OK_CANCEL_OPTION,
                 null,
@@ -314,9 +299,16 @@ public class ManageAccounts extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
+    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

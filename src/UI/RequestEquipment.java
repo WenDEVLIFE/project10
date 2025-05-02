@@ -4,6 +4,8 @@ package UI;/*
  */
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import database.ProjectorSQL;
+
 import java.awt.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -122,7 +124,7 @@ public class RequestEquipment extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(25, 25, 25))
@@ -138,11 +140,20 @@ public class RequestEquipment extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    // This is for the request equipments
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-         staffMenu jframe = new staffMenu();
-        jframe.setVisible(true);
-        dispose();
+
+        String description = jTextArea1.getText();
+
+        if (description.isEmpty()) {
+            // Show an error message if the text area is empty
+            javax.swing.JOptionPane.showMessageDialog(this, "Please enter a request.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            ProjectorSQL.getInstance().sendRequest(description);
+            jTextArea1.setText("");
+        } else {
+            // Process the request here (e.g., save it to a database or send it to an email)
+            javax.swing.JOptionPane.showMessageDialog(this, "Request submitted successfully!", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        }
     }//GEN-LAST:event_jButton8ActionPerformed
 
     /**

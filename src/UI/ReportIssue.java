@@ -4,7 +4,11 @@ package UI;/*
  */
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import database.AccountRegistrationSQL;
+
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -140,12 +144,69 @@ public class ReportIssue extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    // This is for the report issue
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-         staffMenu jframe = new staffMenu();
-        jframe.setVisible(true);
-        dispose();
+        initializeIssueDialog();
+      
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void initializeIssueDialog() {
+        javax.swing.JPanel panel = new javax.swing.JPanel();
+        panel.setLayout(new java.awt.GridLayout(0, 2, 5, 5)); // Grid layout for labels and fields
+
+// Add input fields
+        panel.add(new javax.swing.JLabel("Projector Name"));
+        javax.swing.JTextField projectorField = new javax.swing.JTextField();
+        panel.add(projectorField);
+
+        panel.add(new javax.swing.JLabel("Issue"));
+        javax.swing.JTextField issueField = new javax.swing.JTextField();
+        panel.add(issueField);
+
+
+        // Show the dialog
+        Object[] options = {"Submit", "Cancel"};
+
+        javax.swing.JOptionPane optionPane = new javax.swing.JOptionPane(
+                panel,
+                javax.swing.JOptionPane.PLAIN_MESSAGE,
+                javax.swing.JOptionPane.OK_CANCEL_OPTION,
+                null,
+                options,
+                options[0]
+        );
+        javax.swing.JDialog dialog = optionPane.createDialog(this, "Create Accounts");
+        dialog.setVisible(true);
+
+        Object selectedValue = optionPane.getValue();
+
+        if (selectedValue == null || selectedValue.equals("Submit")) {
+            String projectorName = projectorField.getText();
+            String issue = issueField.getText();
+
+            // Validate input
+            if (projectorName.isEmpty() || issue.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Create a map to hold the data
+            Map<String, String> data = new HashMap<>();
+            data.put("projector_name", projectorName);
+            data.put("issue", issue);
+
+            // Call the SQL method to insert the data
+            AccountRegistrationSQL.getInstance().insertIssue(data);
+            dialog.dispose();
+
+            // Show success message
+            javax.swing.JOptionPane.showMessageDialog(this, "Issue reported successfully!", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+        }
+
+        else{
+            dialog.dispose();
+        }
+    }
 
     /**
      * @param args the command line arguments

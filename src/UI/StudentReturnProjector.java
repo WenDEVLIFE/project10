@@ -235,6 +235,13 @@ public class StudentReturnProjector extends javax.swing.JFrame {
 
         // Call the return function from the ProjectorSQL class
         ProjectorSQL.getInstance().insertReturnProjector(projectorName, studentName, studentId, yearCourseSection);
+        loadList();
+        // Show a success message
+
+        jTextField1.setText("");
+        jTextField2.setText("");
+        jTextField3.setText("");
+        jComboBox1.setSelectedIndex(-1);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed

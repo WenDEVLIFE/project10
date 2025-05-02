@@ -170,4 +170,37 @@ public class AccountRegistrationSQL {
             e.printStackTrace();
         }
     }
+
+    public void insertIssue(Map<String, String> data) {
+
+        String sql = "INSERT INTO issue_projector (projector_name, issue) VALUES ( ?, ?)";
+        String insertLog = "INSERT INTO log_table (description) VALUES ( ?)";
+
+        try (Connection conn = DriverManager.getConnection(MYSQLConnection.databaseUrl, MYSQLConnection.user, MYSQLConnection.password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, data.get("projector_name"));
+            pstmt.setString(2, data.get("issue"));
+
+             int rowsAffected = pstmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Issue inserted successfully.");
+                JOptionPane.showMessageDialog(null, "Issue inserted successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+
+                // Insert into log_table
+                try (PreparedStatement pstmt2 = conn.prepareStatement(insertLog)) {
+                    pstmt2.setString(1, "Issue logged: " + data.get("issue"));
+
+                    pstmt2.executeUpdate();
+                }
+            }
+            else {
+                System.out.println("No issue found with the given user ID.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }

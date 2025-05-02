@@ -283,4 +283,38 @@ public class ProjectorSQL {
             System.out.println("Error returning projector: " + e.getMessage());
         }
     }
+
+    public void sendRequest(String description) {
+        String sql = "INSERT INTO request_table (description) VALUES (?)";
+        String insertLogs = "INSERT INTO log_table (description) VALUES (?)";
+
+        try (java.sql.Connection connection = java.sql.DriverManager.getConnection(
+                MYSQLConnection.databaseUrl, MYSQLConnection.user, MYSQLConnection.password);
+             java.sql.PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, description);
+
+            int rowsAffected = preparedStatement.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Request sent successfully.");
+                JOptionPane.showMessageDialog(null, "Request sent successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                // Insert log entry
+                try (java.sql.PreparedStatement logStatement = connection.prepareStatement(insertLogs)) {
+                    logStatement.setString(1, "Request sent: " + description);
+                    logStatement.executeUpdate();
+                } catch (java.sql.SQLException e) {
+                    e.printStackTrace();
+                    System.out.println("Error inserting log: " + e.getMessage());
+                }
+            } else {
+                System.out.println("Failed to send request.");
+                JOptionPane.showMessageDialog(null, "Failed to send request.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error sending request: " + e.getMessage());
+        }
+    }
 }
