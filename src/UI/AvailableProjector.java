@@ -4,7 +4,12 @@ package UI;/*
  */
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import database.AccountRegistrationSQL;
+import database.ProjectorSQL;
+
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -163,9 +168,54 @@ public class AvailableProjector extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    // This is for the adding available projector
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        loadAddProjectorDialog();
+
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void loadAddProjectorDialog() {
+
+        javax.swing.JPanel panel = new javax.swing.JPanel();
+        panel.setLayout(new java.awt.GridLayout(0, 2, 5, 5)); // Grid layout for labels and fields
+
+        // Add input fields
+        panel.add(new javax.swing.JLabel("Enter Projector Name"));
+        javax.swing.JTextField projectorField = new javax.swing.JTextField();
+        panel.add(projectorField);
+
+        // Show the dialog
+        Object[] options = {"Submit", "Cancel"};
+
+        javax.swing.JOptionPane optionPane = new javax.swing.JOptionPane(
+                panel,
+                javax.swing.JOptionPane.PLAIN_MESSAGE,
+                javax.swing.JOptionPane.OK_CANCEL_OPTION,
+                null,
+                options,
+                options[0]
+        );
+        javax.swing.JDialog dialog = optionPane.createDialog(this, "Create Accounts");
+        dialog.setVisible(true);
+
+        Object selectedValue = optionPane.getValue();
+
+        if (selectedValue == null || selectedValue.equals("Submit")) {
+
+            String projectorName = projectorField.getText();
+            if (projectorName.isEmpty()) {
+                javax.swing.JOptionPane.showMessageDialog(this, "Please enter a projector name.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            } else {
+                // Call the method to add the projector
+                ProjectorSQL.getInstance().addProjector(projectorName);
+                javax.swing.JOptionPane.showMessageDialog(this, "Projector added successfully.", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            }
+        }
+
+        else{
+            dialog.dispose();
+        }
+    }
 
     /**
      * @param args the command line arguments

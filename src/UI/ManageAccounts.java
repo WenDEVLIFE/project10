@@ -205,28 +205,43 @@ public class ManageAccounts extends javax.swing.JFrame {
     // This is for add account
     private void intializeCreateDialog() {
 
-        javax.swing.JPanel panel = new javax.swing.JPanel();
-        panel.setLayout(new java.awt.GridLayout(0, 2, 5, 5)); // Grid layout for labels and fields
+        javax.swing.JPanel mainPanel = new javax.swing.JPanel(new java.awt.BorderLayout(10, 10));
+        mainPanel.setBackground(new java.awt.Color(5, 7, 153));
+
+        // Add the left logo
+        javax.swing.JLabel leftLogo = new javax.swing.JLabel(new javax.swing.ImageIcon(getClass().getResource("/images/logoresize.jpg")));
+        mainPanel.add(leftLogo, java.awt.BorderLayout.WEST);
+
+        // Add the right logo
+        javax.swing.JLabel rightLogo = new javax.swing.JLabel(new javax.swing.ImageIcon(getClass().getResource("/images/pocpls.jpg")));
+        mainPanel.add(rightLogo, java.awt.BorderLayout.EAST);
+
+        // Create the center panel for input fields
+        javax.swing.JPanel centerPanel = new javax.swing.JPanel(new java.awt.GridLayout(0, 2, 5, 5));
+        centerPanel.add(new javax.swing.JLabel("Enter Projector Name"));
+        javax.swing.JTextField projectorField = new javax.swing.JTextField();
+        centerPanel.add(projectorField);
+
 
 // Add input fields
-        panel.add(new javax.swing.JLabel("Enter Username"));
+        mainPanel.add(new javax.swing.JLabel("Enter Username"));
         javax.swing.JTextField usernameField = new javax.swing.JTextField();
-        panel.add(usernameField);
+        mainPanel.add(usernameField);
 
-        panel.add(new javax.swing.JLabel("Enter Password"));
+        mainPanel.add(new javax.swing.JLabel("Enter Password"));
         javax.swing.JPasswordField passwordField = new javax.swing.JPasswordField();
-        panel.add(passwordField);
+        mainPanel.add(passwordField);
 
-        panel.add(new javax.swing.JLabel("Select Role"));
+        mainPanel.add(new javax.swing.JLabel("Select Role"));
         String[] roles = {"Admin", "Staff"};
         javax.swing.JComboBox<String> roleComboBox = new javax.swing.JComboBox<>(roles);
-        panel.add(roleComboBox);
+        mainPanel.add(roleComboBox);
 
         // Show the dialog
         Object[] options = {"Submit", "Cancel"};
 
         javax.swing.JOptionPane optionPane = new javax.swing.JOptionPane(
-                panel,
+                mainPanel,
                 javax.swing.JOptionPane.PLAIN_MESSAGE,
                 javax.swing.JOptionPane.OK_CANCEL_OPTION,
                 null,
