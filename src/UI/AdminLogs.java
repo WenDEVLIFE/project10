@@ -4,11 +4,17 @@ package UI;/*
  */
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import model.LogModel;
+
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.table.DefaultTableModel;
+import database.LogSQL;
 
 /**
  *
@@ -16,6 +22,8 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class AdminLogs extends javax.swing.JFrame {
 
+    DefaultTableModel model;
+    List <LogModel> logList = new ArrayList<>();
     /**
      * Creates new form AdminLogs
      */
@@ -24,6 +32,13 @@ public class AdminLogs extends javax.swing.JFrame {
         getContentPane().setBackground(new Color(5, 7, 153));
         // Set the icon image
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
+
+        String [] columnNames = {"LogID", "Description"};
+        model = new DefaultTableModel(columnNames, 0);
+        jTable1.setModel(model);
+
+        // load logs
+        loadData();
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -116,11 +131,21 @@ public class AdminLogs extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+
         staffMenu jframe = new staffMenu();
         jframe.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void loadData() {
+
+        model.setRowCount(0); // Clear existing rows
+
+        logList = LogSQL.getInstance().getAllLogs();
+        for (LogModel log : logList) {
+            model.addRow(new Object[]{log.getLogID(), log.getDescription()});
+        }
+    }
 
     /**
      * @param args the command line arguments
