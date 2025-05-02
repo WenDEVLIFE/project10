@@ -5,10 +5,11 @@
 package UI;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
+
+import java.awt.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.*;
 
 /**
  *
@@ -21,6 +22,23 @@ public class BorrowingHistory extends javax.swing.JFrame {
      */
     public BorrowingHistory() {
         initComponents();
+
+
+        // Yellow color for the table
+        jTable1.setBackground(new Color( 5, 7, 153));
+        jTable1.setForeground(Color.white);
+
+        // Set the table header color
+        jTable1.getTableHeader().setBackground(new Color(255, 255, 0));
+
+        // Set the table header font color
+        jTable1.getTableHeader().setForeground(Color.black);
+        jTable1.setBorder( BorderFactory.createLineBorder(Color.white, 1));
+
+
+        // Set the table header font
+        jTable1.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 12));
+
     }
 
     /**

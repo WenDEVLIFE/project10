@@ -7,6 +7,7 @@ package UI;
 import database.AccountRegistrationSQL;
 import model.UserModel;
 
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.util.ArrayList;
@@ -31,6 +32,22 @@ public class ManageAccounts extends javax.swing.JFrame {
         String [] columnNames = {"ID", "Username", "Password", "Role"};
         model = new DefaultTableModel(columnNames, 0);
         jTable1.setModel(model);
+
+        // Yellow color for the table
+        jTable1.setBackground(new Color( 5, 7, 153));
+        jTable1.setForeground(Color.white);
+
+        // Set the table header color
+        jTable1.getTableHeader().setBackground(new Color(255, 255, 0));
+
+        // Set the table header font color
+        jTable1.getTableHeader().setForeground(Color.black);
+        jTable1.setBorder( BorderFactory.createLineBorder(Color.white, 1));
+
+
+        // Set the table header font
+        jTable1.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 12));
+
 
         // Load data into the table
         loadData();

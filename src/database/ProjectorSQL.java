@@ -1,10 +1,16 @@
 package database;
 
+import model.IssueModel;
 import model.ProjectorModel;
 
 import javax.swing.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ProjectorSQL {
 
@@ -316,5 +322,64 @@ public class ProjectorSQL {
             e.printStackTrace();
             System.out.println("Error sending request: " + e.getMessage());
         }
+    }
+
+    public void insertIssue(Map<String, String> data) {
+
+        String sql = "INSERT INTO issue_projector (projector_name, issue) VALUES ( ?, ?)";
+        String insertLog = "INSERT INTO log_table (description) VALUES ( ?)";
+
+        try (Connection conn = DriverManager.getConnection(MYSQLConnection.databaseUrl, MYSQLConnection.user, MYSQLConnection.password);
+             PreparedStatement pstmt = conn.prepareStatement(sql)) {
+
+            pstmt.setString(1, data.get("projector_name"));
+            pstmt.setString(2, data.get("issue"));
+
+            int rowsAffected = pstmt.executeUpdate();
+
+            if (rowsAffected > 0) {
+                System.out.println("Issue inserted successfully.");
+
+                JOptionPane.showMessageDialog(null, "Issue inserted successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+
+                // Insert into log_table
+                try (PreparedStatement pstmt2 = conn.prepareStatement(insertLog)) {
+                    pstmt2.setString(1, "Issue logged: " + data.get("issue"));
+
+                    pstmt2.executeUpdate();
+                }
+            }
+            else {
+                System.out.println("No issue found with the given user ID.");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<IssueModel> getIssue() {
+        List<IssueModel> issues = new ArrayList<>();
+        String sql = "SELECT * FROM issue_projector";
+
+        try (java.sql.Connection connection = java.sql.DriverManager.getConnection(
+                MYSQLConnection.databaseUrl, MYSQLConnection.user, MYSQLConnection.password);
+             java.sql.PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             java.sql.ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                String id = resultSet.getString("projector_id");
+                String projectorName = resultSet.getString("projector_name");
+                String issue = resultSet.getString("issue");
+
+                IssueModel issueModel = new IssueModel(id, projectorName, issue);
+                issues.add(issueModel);
+            }
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error retrieving issues: " + e.getMessage());
+        }
+
+        return issues;
     }
 }

@@ -5,14 +5,18 @@ package UI;/*
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
 import database.AccountRegistrationSQL;
+import database.ProjectorSQL;
 
 import java.awt.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+import model.IssueModel;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -20,6 +24,8 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class ReportIssue extends javax.swing.JFrame {
 
+    DefaultTableModel model;
+    List<IssueModel> issueList = new ArrayList<>();
     /**
      * Creates new form ReportIssue
      */
@@ -28,6 +34,28 @@ public class ReportIssue extends javax.swing.JFrame {
         getContentPane().setBackground(new Color(5, 7, 153));
         // Set the icon image
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
+
+        String [] columnNames = {"ProjectorID", "ProjectorName", "Issue"};
+        model = new DefaultTableModel(columnNames, 0);
+        jTable1.setModel(model);
+
+        // Yellow color for the table
+        jTable1.setBackground(new Color( 5, 7, 153));
+        jTable1.setForeground(Color.white);
+
+        // Set the table header color
+        jTable1.getTableHeader().setBackground(new Color(255, 255, 0));
+
+        // Set the table header font color
+        jTable1.getTableHeader().setForeground(Color.black);
+        jTable1.setBorder( BorderFactory.createLineBorder(Color.white, 1));
+
+
+        // Set the table header font
+        jTable1.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 12));
+
+        // Load The data into the table
+        loadData();
     }
 
     /**
@@ -196,7 +224,7 @@ public class ReportIssue extends javax.swing.JFrame {
             data.put("issue", issue);
 
             // Call the SQL method to insert the data
-            AccountRegistrationSQL.getInstance().insertIssue(data);
+            ProjectorSQL.getInstance().insertIssue(data);
             dialog.dispose();
 
             // Show success message
@@ -205,6 +233,16 @@ public class ReportIssue extends javax.swing.JFrame {
 
         else{
             dialog.dispose();
+        }
+    }
+
+    private void loadData() {
+        issueList = ProjectorSQL.getInstance().getIssue();
+        model.setRowCount(0); // Clear existing rows
+
+        for (IssueModel issue : issueList) {
+            Object[] row = {issue.getId(), issue.getProjectorName(), issue.getIssue()};
+            model.addRow(row);
         }
     }
 
