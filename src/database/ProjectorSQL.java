@@ -1,5 +1,6 @@
 package database;
 
+import model.BorrowModel;
 import model.IssueModel;
 import model.ProjectorModel;
 
@@ -416,5 +417,32 @@ public class ProjectorSQL {
             e.printStackTrace();
             System.out.println("Error updating projector status: " + e.getMessage());
         }
+    }
+
+    public List<BorrowModel> getBorrowingHistory() {
+        List<BorrowModel> borrowList = new ArrayList<>();
+        String sql = "SELECT * FROM borrowing_table";
+
+        try (java.sql.Connection connection = java.sql.DriverManager.getConnection(
+                MYSQLConnection.databaseUrl, MYSQLConnection.user, MYSQLConnection.password);
+             java.sql.PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             java.sql.ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            while (resultSet.next()) {
+                String id = resultSet.getString("borrow_id");
+                String studentName = resultSet.getString("name");
+                String studentID = resultSet.getString("student_id");
+                String yearSection = resultSet.getString("year_and_course");
+                String projectorName = resultSet.getString("projector_name");
+
+                BorrowModel borrowModel = new BorrowModel(id, studentName, studentID, yearSection, projectorName);
+                borrowList.add(borrowModel);
+            }
+        } catch (java.sql.SQLException e) {
+            e.printStackTrace();
+            System.out.println("Error retrieving borrowing history: " + e.getMessage());
+        }
+
+        return borrowList;
     }
 }

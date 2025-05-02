@@ -10,6 +10,12 @@ import java.awt.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
+
+import database.ProjectorSQL;
+import model.BorrowModel;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,6 +23,8 @@ import javax.swing.*;
  */
 public class BorrowingHistory extends javax.swing.JFrame {
 
+    DefaultTableModel model;
+    List <BorrowModel> borrowList = new ArrayList<>();
     /**
      * Creates new form BorrowingHistory
      */
@@ -26,6 +34,11 @@ public class BorrowingHistory extends javax.swing.JFrame {
         getContentPane().setBackground(new Color(5, 7, 153));
 
         String [] columnNames = {"Student ID", "Name", "Year & Section", "Borrow"};
+        model = new DefaultTableModel(columnNames, 0);
+        jTable1.setModel(model);
+
+        // Sample data for the table
+        loadData();
 
 
         // Yellow color for the table
@@ -43,6 +56,18 @@ public class BorrowingHistory extends javax.swing.JFrame {
         // Set the table header font
         jTable1.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 12));
 
+    }
+
+    private void loadData() {
+
+        model.setRowCount(0); // Clear existing rows
+
+        borrowList = ProjectorSQL.getInstance().getBorrowingHistory();
+
+        for (BorrowModel borrow : borrowList) {
+            Object[] row = {borrow.getStudentID(), borrow.getStudentName(), borrow.getYearSection(), borrow.getProjectorName()};
+            model.addRow(row);
+        }
     }
 
     /**

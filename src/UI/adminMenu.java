@@ -200,7 +200,7 @@ public class adminMenu extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        BorrowingForm  borrow = new BorrowingForm();
+        BorrowingHistory  borrow = new BorrowingHistory();
         borrow.setVisible(true);
         
         dispose();
@@ -216,7 +216,7 @@ public class adminMenu extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        MarkProjector projector = new MarkProjector();
+        AdminMarkProjector projector = new AdminMarkProjector();
         projector.setVisible(true);
         
         dispose();
