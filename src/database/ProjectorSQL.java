@@ -18,8 +18,10 @@ public class ProjectorSQL {
     }
 
 
+    // Add a projector to the database
     public void addProjector(String projectorName) {
         String sql = "INSERT INTO projector_table (projector_name, status) VALUES (?, ?)";
+        String insertLogs = "INSERT INTO log_table (description) VALUES (?)";
 
         try (java.sql.Connection connection = java.sql.DriverManager.getConnection(
                 MYSQLConnection.databaseUrl, MYSQLConnection.user, MYSQLConnection.password);
@@ -33,6 +35,15 @@ public class ProjectorSQL {
             if (rowsAffected > 0) {
                 System.out.println("Projector added successfully.");
                 JOptionPane.showMessageDialog(null, "Projector added successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
+
+                // Insert log entry
+                try (java.sql.PreparedStatement logStatement = connection.prepareStatement(insertLogs)) {
+                    logStatement.setString(1, "Projector " + projectorName + " added successfully.");
+                    logStatement.executeUpdate();
+                } catch (java.sql.SQLException e) {
+                    e.printStackTrace();
+                    System.out.println("Error inserting log: " + e.getMessage());
+                }
             } else {
                 System.out.println("Failed to add projector.");
                 JOptionPane.showMessageDialog(null, "Failed to add projector.", "Error", JOptionPane.ERROR_MESSAGE);
