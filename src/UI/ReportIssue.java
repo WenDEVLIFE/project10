@@ -203,7 +203,7 @@ public class ReportIssue extends javax.swing.JFrame {
                 options,
                 options[0]
         );
-        javax.swing.JDialog dialog = optionPane.createDialog(this, "Create Accounts");
+        javax.swing.JDialog dialog = optionPane.createDialog(this, "Report an Issue");
         dialog.setVisible(true);
 
         Object selectedValue = optionPane.getValue();
@@ -229,6 +229,7 @@ public class ReportIssue extends javax.swing.JFrame {
 
             // Show success message
             javax.swing.JOptionPane.showMessageDialog(this, "Issue reported successfully!", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            loadData();
         }
 
         else{

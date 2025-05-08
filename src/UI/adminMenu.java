@@ -76,7 +76,7 @@ public class adminMenu extends javax.swing.JFrame {
         jButton3.setBackground(new java.awt.Color(204, 153, 0));
         jButton3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Available Projectors");
+        jButton3.setText("Available Projector & Props");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
@@ -86,7 +86,7 @@ public class adminMenu extends javax.swing.JFrame {
         jButton4.setBackground(new java.awt.Color(204, 153, 0));
         jButton4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Mark Projector As Returned");
+        jButton4.setText("Mark Projector & Props As Returned");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
