@@ -5,6 +5,14 @@
 package UI;
 
 import com.formdev.flatlaf.FlatIntelliJLaf;
+import com.itextpdf.text.BaseColor;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.FontFactory;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 
 import java.awt.*;
 import java.util.logging.Level;
@@ -13,6 +21,8 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 import database.ProjectorSQL;
+import java.io.File;
+import java.io.FileOutputStream;
 import model.BorrowModel;
 import java.util.ArrayList;
 import java.util.List;
@@ -85,6 +95,7 @@ public class BorrowingHistory extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
+        jButton8 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -119,6 +130,16 @@ public class BorrowingHistory extends javax.swing.JFrame {
 
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logoresize.jpg"))); // NOI18N
 
+        jButton8.setBackground(new java.awt.Color(204, 153, 0));
+        jButton8.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(255, 255, 255));
+        jButton8.setText("Print Reports");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -132,13 +153,15 @@ public class BorrowingHistory extends javax.swing.JFrame {
                 .addComponent(jLabel9)
                 .addGap(21, 21, 21))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(311, 311, 311)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(149, 149, 149)
+                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(115, 115, 115)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -154,9 +177,11 @@ public class BorrowingHistory extends javax.swing.JFrame {
                             .addComponent(jLabel9))))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 262, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20))
         );
 
         pack();
@@ -168,6 +193,68 @@ public class BorrowingHistory extends javax.swing.JFrame {
         menu.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    // Print the reports
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+         JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Save PDF");
+        fileChooser.setFileFilter(new javax.swing.filechooser.FileNameExtensionFilter("PDF Documents", "pdf"));
+
+        int userSelection = fileChooser.showSaveDialog(this);
+
+        if (userSelection == JFileChooser.APPROVE_OPTION) {
+            File fileToSave = fileChooser.getSelectedFile();
+            String filePath = fileToSave.getAbsolutePath();
+
+            // Ensure the file has a .pdf extension
+            if (!filePath.endsWith(".pdf")) {
+                filePath += ".pdf";
+            }
+
+            try {
+                // Create a new document
+                Document document = new Document();
+                PdfWriter.getInstance(document, new FileOutputStream(filePath));
+                document.open();
+
+                // Add a title to the PDF
+                document.add(new Paragraph("Borrowing History", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18, BaseColor.BLACK)));
+                document.add(new Paragraph(" ")); // Add a blank line
+
+                // Create a table with the same number of columns as the JTable
+                PdfPTable pdfTable = new PdfPTable(jTable1.getColumnCount());
+                pdfTable.setWidthPercentage(100);
+
+                // Add table headers
+                for (int i = 0; i < jTable1.getColumnCount(); i++) {
+                    PdfPCell cell = new PdfPCell(new Phrase(jTable1.getColumnName(i)));
+                    cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
+                    pdfTable.addCell(cell);
+                }
+
+                // Add table rows
+                for (int row = 0; row < jTable1.getRowCount(); row++) {
+                    for (int col = 0; col < jTable1.getColumnCount(); col++) {
+                        pdfTable.addCell(jTable1.getValueAt(row, col).toString());
+                    }
+                }
+
+                // Add the table to the document
+                document.add(pdfTable);
+
+                // Close the document
+                document.close();
+
+                // Show success message
+                JOptionPane.showMessageDialog(this, "PDF saved successfully at: " + filePath);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Error saving PDF: " + e.getMessage());
+            }
+        }
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -211,6 +298,7 @@ public class BorrowingHistory extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel9;

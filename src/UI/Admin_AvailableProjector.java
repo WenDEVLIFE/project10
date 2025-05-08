@@ -34,7 +34,7 @@ public class Admin_AvailableProjector extends javax.swing.JFrame {
         // Set the icon image
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
 
-        String [] columnNames = {"ProjectorID", "ProjectorName", "Status"};
+        String [] columnNames = {"ItemID", "ItemName", "Status"};
         model = new DefaultTableModel(columnNames, 0);
         jTable1.setModel(model);
 
@@ -115,7 +115,7 @@ public class Admin_AvailableProjector extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("AVAILABLE PROJECTOR");
+        jLabel2.setText("AVAILABLE PROJECTOR & PROPS");
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pocpls_resize.jpg"))); // NOI18N
 
@@ -138,13 +138,13 @@ public class Admin_AvailableProjector extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel10)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 235, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(164, 164, 164)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(108, 108, 108)
                         .addComponent(jLabel9)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 67, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)

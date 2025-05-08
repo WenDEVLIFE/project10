@@ -32,7 +32,7 @@ public class StudentAvailableProjector extends javax.swing.JFrame {
         // Set the icon image
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
 
-        String [] columnNames = {"ProjectorID", "ProjectorName", "Status"};
+   String [] columnNames = {"ItemID", "ItemName", "Status"};
         model = new DefaultTableModel(columnNames, 0);
         jTable1.setModel(model);
 
@@ -82,7 +82,7 @@ public class StudentAvailableProjector extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "ProjectorID", "ProjectorName", "Status"
+                "ItemID", "ItemName", "Status"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -103,7 +103,7 @@ public class StudentAvailableProjector extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("AVAILABLE PROJECTOR");
+        jLabel2.setText("AVAILABLE PROJECTOR & PROPS");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -113,8 +113,8 @@ public class StudentAvailableProjector extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(164, 164, 164)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(117, 117, 117)
                 .addComponent(jLabel9)
                 .addGap(21, 21, 21))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()

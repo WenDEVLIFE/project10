@@ -27,7 +27,7 @@ public class Staff_AvailableProjector extends javax.swing.JFrame {
         initComponents();
 
         getContentPane().setBackground(new Color(5, 7, 153));
-        String [] columnNames = {"ProjectorID", "ProjectorName", "Status"};
+        String [] columnNames = {"ItemID", "ItemName", "Status"};
         model = new DefaultTableModel(columnNames, 0);
         jTable1.setModel(model);
 
@@ -75,7 +75,7 @@ public class Staff_AvailableProjector extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("AVAILABLE PROJECTOR");
+        jLabel2.setText("AVAILABLE PROJECTOR & PROPS");
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pocpls_resize.jpg"))); // NOI18N
 
@@ -87,7 +87,7 @@ public class Staff_AvailableProjector extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "ProjectorID", "ProjectorName", "Status"
+                "ItemID", "ItemName", "Status"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -115,7 +115,7 @@ public class Staff_AvailableProjector extends javax.swing.JFrame {
         jButton7.setBackground(new java.awt.Color(255, 204, 0));
         jButton7.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Add Projector");
+        jButton7.setText("Add Projector/ Props");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
@@ -134,8 +134,8 @@ public class Staff_AvailableProjector extends javax.swing.JFrame {
                         .addGap(82, 82, 82)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(82, 82, 82)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(91, 91, 91))
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(72, 72, 72))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(41, 41, 41))))
@@ -143,8 +143,8 @@ public class Staff_AvailableProjector extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(153, 153, 153)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 364, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(123, 123, 123)
                 .addComponent(jLabel9)
                 .addGap(17, 17, 17))
         );
@@ -154,8 +154,8 @@ public class Staff_AvailableProjector extends javax.swing.JFrame {
                 .addGap(12, 12, 12)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel10)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -187,9 +187,9 @@ public class Staff_AvailableProjector extends javax.swing.JFrame {
             // Call the method to delete the projector
             ProjectorSQL.getInstance().deleteProjector(projectorId);
             loadData();
-            javax.swing.JOptionPane.showMessageDialog(this, "Projector deleted successfully.", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(this, "Item deleted successfully.", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
         } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Please select a projector to delete.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+            javax.swing.JOptionPane.showMessageDialog(this, "Please select a item to delete.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
         }
 
     }//GEN-LAST:event_jButton5ActionPerformed
@@ -254,7 +254,7 @@ public class Staff_AvailableProjector extends javax.swing.JFrame {
         panel.setLayout(new java.awt.GridLayout(0, 2, 5, 5)); // Grid layout for labels and fields
 
         // Add input fields
-        panel.add(new javax.swing.JLabel("Enter Projector Name"));
+        panel.add(new javax.swing.JLabel("Enter Projector/props Name"));
         javax.swing.JTextField projectorField = new javax.swing.JTextField();
         panel.add(projectorField);
 
@@ -269,7 +269,7 @@ public class Staff_AvailableProjector extends javax.swing.JFrame {
                 options,
                 options[0]
         );
-        javax.swing.JDialog dialog = optionPane.createDialog(this, "Create Accounts");
+        javax.swing.JDialog dialog = optionPane.createDialog(this, "Add Projectors & Props");
         dialog.setVisible(true);
 
         Object selectedValue = optionPane.getValue();
@@ -278,12 +278,12 @@ public class Staff_AvailableProjector extends javax.swing.JFrame {
 
             String projectorName = projectorField.getText();
             if (projectorName.isEmpty()) {
-                javax.swing.JOptionPane.showMessageDialog(this, "Please enter a projector name.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "Please enter a projector/props name.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
             } else {
                 // Call the method to add the projector
                 ProjectorSQL.getInstance().addProjector(projectorName);
                 loadData();
-                javax.swing.JOptionPane.showMessageDialog(this, "Projector added successfully.", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
+                javax.swing.JOptionPane.showMessageDialog(this, "Item added successfully.", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             }
         }
 

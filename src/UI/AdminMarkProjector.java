@@ -33,7 +33,7 @@ public class AdminMarkProjector extends javax.swing.JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
 
         // Set the table model
-        String [] columnNames = {"ProjectorID", "ProjectorName", "Status"};
+        String [] columnNames = {"ItemID", "ItemName", "Status"};
         model = new DefaultTableModel(columnNames, 0);
         jTable1.setModel(model);
 
@@ -95,7 +95,7 @@ public class AdminMarkProjector extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("RETURNED PROJECTOR");
+        jLabel1.setText("RETURNED PROJECTOR & PROPS");
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pocpls_resize.jpg"))); // NOI18N
 
@@ -107,13 +107,13 @@ public class AdminMarkProjector extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "ProjectorID", "ProjectorName", "Status"
+                "ItemID", "ItemName", "Status"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
         jButton6.setBackground(new java.awt.Color(204, 153, 0));
-        jButton6.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jButton6.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Back");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +123,7 @@ public class AdminMarkProjector extends javax.swing.JFrame {
         });
 
         jButton5.setBackground(new java.awt.Color(204, 153, 0));
-        jButton5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Mark as Returned");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -139,15 +139,15 @@ public class AdminMarkProjector extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(27, 27, 27)
                 .addComponent(jLabel10)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 278, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 278, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(144, 144, 144)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(117, 117, 117)
                 .addComponent(jLabel9)
                 .addGap(26, 26, 26))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap(83, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 767, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(115, 115, 115)
