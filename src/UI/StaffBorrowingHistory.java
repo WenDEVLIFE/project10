@@ -58,7 +58,7 @@ public class StaffBorrowingHistory extends javax.swing.JFrame {
     }
     private void loadData() {
 
-        model.setRowCount(0); // Clear existing rows
+        model.setRowCount(0);
 
         borrowList = ProjectorSQL.getInstance().getBorrowingHistory();
 
@@ -197,40 +197,35 @@ public class StaffBorrowingHistory extends javax.swing.JFrame {
             }
 
             try {
-                // Create a new document
+
                 Document document = new Document();
                 PdfWriter.getInstance(document, new FileOutputStream(filePath));
                 document.open();
 
-                // Add a title to the PDF
                 document.add(new Paragraph("Borrowing History", FontFactory.getFont(FontFactory.HELVETICA_BOLD, 18, BaseColor.BLACK)));
-                document.add(new Paragraph(" ")); // Add a blank line
+                document.add(new Paragraph(" "));
 
-                // Create a table with the same number of columns as the JTable
                 PdfPTable pdfTable = new PdfPTable(jTable1.getColumnCount());
                 pdfTable.setWidthPercentage(100);
 
-                // Add table headers
+
                 for (int i = 0; i < jTable1.getColumnCount(); i++) {
                     PdfPCell cell = new PdfPCell(new Phrase(jTable1.getColumnName(i)));
                     cell.setBackgroundColor(BaseColor.LIGHT_GRAY);
                     pdfTable.addCell(cell);
                 }
 
-                // Add table rows
+
                 for (int row = 0; row < jTable1.getRowCount(); row++) {
                     for (int col = 0; col < jTable1.getColumnCount(); col++) {
                         pdfTable.addCell(jTable1.getValueAt(row, col).toString());
                     }
                 }
 
-                // Add the table to the document
                 document.add(pdfTable);
 
-                // Close the document
                 document.close();
 
-                // Show success message
                 JOptionPane.showMessageDialog(this, "PDF saved successfully at: " + filePath);
 
             } catch (Exception e) {
