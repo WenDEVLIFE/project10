@@ -41,7 +41,6 @@ public class AccountRegistrationSQL {
         return false;
     }
 
-    // Insert student account
     public void insertStudentAccount(Map<String, Object> userdata) {
         String sql = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";
         String insertStudent = "INSERT INTO student (user_id, student_id) VALUES (?, ?)";

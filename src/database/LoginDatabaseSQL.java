@@ -35,7 +35,7 @@ public class LoginDatabaseSQL {
 
                     userAggreement jframe = new userAggreement(role);
                     jframe.setVisible(true);
-                    login.dispose(); // Close the login window
+                    login.dispose();
 
                     ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoresize.jpg")); // Load your ima
                     javax.swing.JOptionPane.showMessageDialog(login, "Login successful! User ID: " + username, "Login Successful", javax.swing.JOptionPane.INFORMATION_MESSAGE, icon);

@@ -39,16 +39,14 @@ public class ProjectorSQL {
              java.sql.PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setString(1, projectorName);
-            preparedStatement.setString(2, "Available"); // Assuming the default status is "Available"
+            preparedStatement.setString(2, "Available");
 
             int rowsAffected = preparedStatement.executeUpdate();
 
             if (rowsAffected > 0) {
                 System.out.println("Projector added successfully.");
-                ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoresize.jpg")); // Load your ima
+                ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoresize.jpg"));
                 JOptionPane.showMessageDialog(null, "Projector added successfully.", "Success", JOptionPane.INFORMATION_MESSAGE, icon);
-
-                // Insert log entry
                 try (java.sql.PreparedStatement logStatement = connection.prepareStatement(insertLogs)) {
                     logStatement.setString(1, "Projector " + projectorName + " added successfully.");
                     logStatement.executeUpdate();
@@ -58,7 +56,7 @@ public class ProjectorSQL {
                 }
             } else {
                 System.out.println("Failed to add projector.");
-                ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoresize.jpg")); // Load your ima
+                ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoresize.jpg"));
                 JOptionPane.showMessageDialog(null, "Failed to add projector.", "Error", JOptionPane.ERROR_MESSAGE, icon);
             }
         } catch (java.sql.SQLException e) {
@@ -92,7 +90,6 @@ public class ProjectorSQL {
         return projectors;
     }
 
-    // Added delete function to remove a projector from the database
     public void deleteProjector(String projectorId) {
         String sql = "DELETE FROM projector_table WHERE projector_id = ?";
         String insertLogs = "INSERT INTO log_table (description) VALUES (?)";
@@ -198,7 +195,6 @@ public class ProjectorSQL {
                 System.out.println("Projector borrowed successfully.");
                 JOptionPane.showMessageDialog(null, "Projector borrowed successfully.", "Success", JOptionPane.INFORMATION_MESSAGE);
 
-                // Insert log entry
                 try (java.sql.PreparedStatement logStatement = connection.prepareStatement(insertLogs)) {
                     logStatement.setString(1, "Projector " + projectorName + " borrowed by student " + studentName + " (" + studentID + ") for course " + course);
 
@@ -260,7 +256,6 @@ public class ProjectorSQL {
                 ImageIcon icon = new ImageIcon(getClass().getResource("/images/logoresize.jpg")); // Load your image
                 JOptionPane.showMessageDialog(null, "Projector returned successfully.", "Success", JOptionPane.INFORMATION_MESSAGE, icon);
 
-                // Insert log entry
                 try (java.sql.PreparedStatement logStatement = connection.prepareStatement(insertLogs)) {
                     logStatement.setString(1, "Projector " + projectorName + " returned by student " + studentName + " (" + studentId + ") for course " + yearCourseSection);
                     logStatement.executeUpdate();
@@ -269,7 +264,6 @@ public class ProjectorSQL {
                     System.out.println("Error inserting log: " + e.getMessage());
                 }
 
-                // Insert return history
                 try (java.sql.PreparedStatement returnStatement = connection.prepareStatement(insertReturnHistory)) {
                     returnStatement.setString(1, studentName);
                     returnStatement.setString(2, studentId);
