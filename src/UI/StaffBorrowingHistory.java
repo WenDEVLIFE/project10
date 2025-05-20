@@ -33,27 +33,21 @@ public class StaffBorrowingHistory extends javax.swing.JFrame {
     public StaffBorrowingHistory() {
         initComponents();
         getContentPane().setBackground(new Color(5, 7, 153));
-
+        setLocationRelativeTo(null);
         String [] columnNames = {"Student ID", "Name", "Year & Section", "Borrow"};
         model = new DefaultTableModel(columnNames, 0);
         jTable1.setModel(model);
 
-        // Yellow color for the table
         jTable1.setBackground(new Color( 5, 7, 153));
         jTable1.setForeground(Color.white);
 
-        // Set the table header color
         jTable1.getTableHeader().setBackground(new Color(255, 255, 0));
 
-        // Set the table header font color
         jTable1.getTableHeader().setForeground(Color.black);
         jTable1.setBorder( BorderFactory.createLineBorder(Color.white, 1));
 
-
-        // Set the table header font
         jTable1.getTableHeader().setFont(new java.awt.Font("Verdana", java.awt.Font.BOLD, 12));
 
-        // load the data
         loadData();
     }
     private void loadData() {
@@ -108,7 +102,7 @@ public class StaffBorrowingHistory extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton7.setBackground(new java.awt.Color(204, 153, 0));
-        jButton7.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton7.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Back");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -118,7 +112,7 @@ public class StaffBorrowingHistory extends javax.swing.JFrame {
         });
 
         jButton8.setBackground(new java.awt.Color(204, 153, 0));
-        jButton8.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton8.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton8.setForeground(new java.awt.Color(255, 255, 255));
         jButton8.setText("Print");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -191,7 +185,6 @@ public class StaffBorrowingHistory extends javax.swing.JFrame {
             File fileToSave = fileChooser.getSelectedFile();
             String filePath = fileToSave.getAbsolutePath();
 
-            // Ensure the file has a .pdf extension
             if (!filePath.endsWith(".pdf")) {
                 filePath += ".pdf";
             }

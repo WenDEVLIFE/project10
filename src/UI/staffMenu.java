@@ -22,6 +22,7 @@ public class staffMenu extends javax.swing.JFrame {
     public staffMenu() {
         initComponents();
  getContentPane().setBackground(new Color(5, 7, 153));
+        setLocationRelativeTo(null);
         // Set the icon image
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
     }
@@ -49,7 +50,7 @@ public class staffMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setBackground(new java.awt.Color(255, 204, 0));
-        jButton1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Borrowing History");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -59,7 +60,7 @@ public class staffMenu extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(255, 204, 0));
-        jButton2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Available Projector");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -69,7 +70,7 @@ public class staffMenu extends javax.swing.JFrame {
         });
 
         jButton3.setBackground(new java.awt.Color(255, 204, 0));
-        jButton3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Request Equiment");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -79,7 +80,7 @@ public class staffMenu extends javax.swing.JFrame {
         });
 
         jButton4.setBackground(new java.awt.Color(255, 204, 0));
-        jButton4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Report Issue");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +90,7 @@ public class staffMenu extends javax.swing.JFrame {
         });
 
         jButton5.setBackground(new java.awt.Color(255, 204, 0));
-        jButton5.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Mark Projector As Returned");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +100,7 @@ public class staffMenu extends javax.swing.JFrame {
         });
 
         jButton6.setBackground(new java.awt.Color(255, 204, 0));
-        jButton6.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton6.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("EXIT");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +110,7 @@ public class staffMenu extends javax.swing.JFrame {
         });
 
         jButton7.setBackground(new java.awt.Color(255, 204, 0));
-        jButton7.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton7.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("LOG OUT");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -152,7 +153,7 @@ public class staffMenu extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(25, 25, 25))))
         );
         layout.setVerticalGroup(
@@ -220,10 +221,8 @@ public class staffMenu extends javax.swing.JFrame {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
 
-        // LOgout function
         int response = JOptionPane.showConfirmDialog(this, "Are you sure you want to log out?", "Log Out", JOptionPane.YES_NO_OPTION);
         if (response == JOptionPane.YES_OPTION) {
-            // User clicked "Yes", perform log out action
             login login = new login();
             login.setVisible(true);
             dispose();

@@ -27,9 +27,8 @@ public class StudentReturnProjector extends javax.swing.JFrame {
     public StudentReturnProjector() {
         initComponents();
         getContentPane().setBackground(new Color(5, 7, 153));
-        // Set the icon image
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
-
+        setLocationRelativeTo(null);
         loadList();
     }
 
@@ -95,7 +94,7 @@ public class StudentReturnProjector extends javax.swing.JFrame {
         jLabel5.setText("SELECT A PROJECTOR & PROPS");
 
         jButton3.setBackground(new java.awt.Color(255, 204, 0));
-        jButton3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Back");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -105,7 +104,7 @@ public class StudentReturnProjector extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(255, 204, 0));
-        jButton2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Return");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -207,18 +206,15 @@ public class StudentReturnProjector extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {                                             
+    }                                           
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
         studentMenu jframe = new studentMenu();
         jframe.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    // This is for the return functions
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String projectorName = (String) jComboBox1.getSelectedItem();
         String studentName = jTextField2.getText();
@@ -226,15 +222,12 @@ public class StudentReturnProjector extends javax.swing.JFrame {
         String yearCourseSection = jTextField1.getText();
 
         if (projectorName == null || studentName.isEmpty() || studentId.isEmpty() || yearCourseSection.isEmpty()) {
-            // Show an error message
             System.out.println("Please fill in all fields.");
             return;
         }
 
-        // Call the return function from the ProjectorSQL class
         ProjectorSQL.getInstance().insertReturnProjector(projectorName, studentName, studentId, yearCourseSection);
         loadList();
-        // Show a success message
 
         jTextField1.setText("");
         jTextField2.setText("");
@@ -243,11 +236,9 @@ public class StudentReturnProjector extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     void loadList(){

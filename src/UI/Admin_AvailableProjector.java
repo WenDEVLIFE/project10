@@ -31,30 +31,24 @@ public class Admin_AvailableProjector extends javax.swing.JFrame {
     public Admin_AvailableProjector() {
         initComponents();
         getContentPane().setBackground(new Color(5, 7, 153));
-        // Set the icon image
+        setLocationRelativeTo(null);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
 
         String [] columnNames = {"ItemID", "ItemName", "Status"};
         model = new DefaultTableModel(columnNames, 0);
         jTable1.setModel(model);
 
-        // Yellow color for the table
         jTable1.setBackground(new Color( 5, 7, 153));
         jTable1.setForeground(Color.white);
 
-        // Set the table header color
         jTable1.getTableHeader().setBackground(new Color(255, 255, 0));
 
-        // Set the table header font color
         jTable1.getTableHeader().setForeground(Color.black);
         jTable1.setBorder( BorderFactory.createLineBorder(Color.white, 1));
 
 
-        // Set the table header font
         jTable1.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 12));
 
-
-        // Load the projector data into the table
         loadData();
     }
 
@@ -79,7 +73,7 @@ public class Admin_AvailableProjector extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton5.setBackground(new java.awt.Color(255, 204, 0));
-        jButton5.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Delete");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -89,7 +83,7 @@ public class Admin_AvailableProjector extends javax.swing.JFrame {
         });
 
         jButton6.setBackground(new java.awt.Color(255, 204, 0));
-        jButton6.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton6.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Back");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -120,7 +114,7 @@ public class Admin_AvailableProjector extends javax.swing.JFrame {
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pocpls_resize.jpg"))); // NOI18N
 
         jButton7.setBackground(new java.awt.Color(255, 204, 0));
-        jButton7.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton7.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Add Projector");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -151,8 +145,8 @@ public class Admin_AvailableProjector extends javax.swing.JFrame {
                                 .addGap(82, 82, 82)
                                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(82, 82, 82)
-                                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(91, 91, 91))
+                                .addComponent(jButton7)
+                                .addGap(87, 87, 87))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(41, 41, 41))))))
@@ -187,10 +181,9 @@ public class Admin_AvailableProjector extends javax.swing.JFrame {
         int selectedRow = jTable1.getSelectedRow();
 
         if (selectedRow != -1) {
-            // Get the projector ID from the selected row
+
             String projectorId = jTable1.getValueAt(selectedRow, 0).toString();
 
-            // Call the method to delete the projector
             ProjectorSQL.getInstance().deleteProjector(projectorId);
             loadData();
             javax.swing.JOptionPane.showMessageDialog(this, "Projector deleted successfully.", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
@@ -207,20 +200,16 @@ public class Admin_AvailableProjector extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    // This is for the adding available projector
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         loadAddProjectorDialog();
 
     }//GEN-LAST:event_jButton7ActionPerformed
 
     void loadData() {
-        // Clear the existing data in the table
         model.setRowCount(0);
 
-        // Get the projector data from the database
         projectorList = ProjectorSQL.getInstance().getProjectors();
 
-        // Populate the table with the projector data
         for  ( ProjectorModel projector : projectorList) {
             Object[] row = {projector.getId(), projector.getProjectorName(), projector.getStatus()};
             model.addRow(row);
@@ -229,14 +218,12 @@ public class Admin_AvailableProjector extends javax.swing.JFrame {
     private void loadAddProjectorDialog() {
 
         javax.swing.JPanel panel = new javax.swing.JPanel();
-        panel.setLayout(new java.awt.GridLayout(0, 2, 5, 5)); // Grid layout for labels and fields
+        panel.setLayout(new java.awt.GridLayout(0, 2, 5, 5));
 
-        // Add input fields
         panel.add(new javax.swing.JLabel("Enter Projector Name"));
         javax.swing.JTextField projectorField = new javax.swing.JTextField();
         panel.add(projectorField);
 
-        // Show the dialog
         Object[] options = {"Submit", "Cancel"};
 
         javax.swing.JOptionPane optionPane = new javax.swing.JOptionPane(
@@ -258,7 +245,6 @@ public class Admin_AvailableProjector extends javax.swing.JFrame {
             if (projectorName.isEmpty()) {
                 javax.swing.JOptionPane.showMessageDialog(this, "Please enter a projector name.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
             } else {
-                // Call the method to add the projector
                 ProjectorSQL.getInstance().addProjector(projectorName);
                 loadData();
                 javax.swing.JOptionPane.showMessageDialog(this, "Projector added successfully.", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);

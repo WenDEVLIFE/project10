@@ -28,35 +28,32 @@ public class ManageAccounts extends javax.swing.JFrame {
     public ManageAccounts() {
         initComponents();
         getContentPane().setBackground(new Color(5, 7, 153));
+        setLocationRelativeTo(null);
 
         String [] columnNames = {"ID", "Username", "Password", "Role"};
         model = new DefaultTableModel(columnNames, 0);
         jTable1.setModel(model);
 
-        // Yellow color for the table
+
         jTable1.setBackground(new Color( 5, 7, 153));
         jTable1.setForeground(Color.white);
 
-        // Set the table header color
         jTable1.getTableHeader().setBackground(new Color(255, 255, 0));
 
-        // Set the table header font color
         jTable1.getTableHeader().setForeground(Color.black);
         jTable1.setBorder( BorderFactory.createLineBorder(Color.white, 1));
 
 
-        // Set the table header font
+
         jTable1.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 12));
 
 
-        // Load data into the table
         loadData();
     }
 
     private void loadData() {
         userList = AccountRegistrationSQL.getInstance().getUserAccount();
-        model.setRowCount(0); // Clear existing rows
-
+        model.setRowCount(0);
         for (UserModel user : userList) {
             Object[] row = {user.getId(), user.getUsername(), user.getPassword(), user.getRole()};
             model.addRow(row);
@@ -87,7 +84,7 @@ public class ManageAccounts extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Manage Accounts");
+        jLabel8.setText("MANAGE ACCOUNTS");
 
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/pocpls_resize.jpg"))); // NOI18N
 
@@ -105,7 +102,7 @@ public class ManageAccounts extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton7.setBackground(new java.awt.Color(204, 153, 0));
-        jButton7.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton7.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Add Account");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +112,7 @@ public class ManageAccounts extends javax.swing.JFrame {
         });
 
         jButton15.setBackground(new java.awt.Color(204, 153, 0));
-        jButton15.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton15.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton15.setForeground(new java.awt.Color(255, 255, 255));
         jButton15.setText("Back");
         jButton15.addActionListener(new java.awt.event.ActionListener() {
@@ -125,7 +122,7 @@ public class ManageAccounts extends javax.swing.JFrame {
         });
 
         jButton16.setBackground(new java.awt.Color(204, 153, 0));
-        jButton16.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton16.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton16.setForeground(new java.awt.Color(255, 255, 255));
         jButton16.setText("Delete Account");
         jButton16.addActionListener(new java.awt.event.ActionListener() {
@@ -154,7 +151,7 @@ public class ManageAccounts extends javax.swing.JFrame {
                         .addGap(50, 50, 50)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(67, 67, 67)
-                        .addComponent(jButton16, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jButton16))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(41, 41, 41)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 736, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -185,15 +182,14 @@ public class ManageAccounts extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // This is for add account
+
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
         intializeCreateDialog();
       
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        // TODO add your handling code here:
+
         adminMenu menu = new adminMenu();
         menu.setVisible(true);
         dispose();
@@ -219,13 +215,11 @@ public class ManageAccounts extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton16ActionPerformed
 
 
-    // This is for add account
     private void intializeCreateDialog() {
 
         javax.swing.JPanel panel = new javax.swing.JPanel();
-        panel.setLayout(new java.awt.GridLayout(0, 2, 5, 5)); // Grid layout for labels and fields
+        panel.setLayout(new java.awt.GridLayout(0, 2, 5, 5));
 
-// Add input fields
         panel.add(new javax.swing.JLabel("Enter Username"));
         javax.swing.JTextField usernameField = new javax.swing.JTextField();
         panel.add(usernameField);
@@ -316,16 +310,9 @@ public class ManageAccounts extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton10;
-    private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
-    private javax.swing.JButton jButton13;
-    private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

@@ -8,8 +8,7 @@ import com.formdev.flatlaf.FlatIntelliJLaf;
 import java.awt.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.*;
 
 /**
  *
@@ -17,12 +16,15 @@ import javax.swing.UnsupportedLookAndFeelException;
  */
 public class userAggreement extends javax.swing.JFrame {
 
+    static String role;
     /**
      * Creates new form userAggreement
      */
-    public userAggreement() {
+    public userAggreement(String role) {
+        userAggreement.role = role;
         initComponents();
         getContentPane().setBackground(new Color(5, 7, 153));
+        setLocationRelativeTo(null);
         // Set the icon image
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
     }
@@ -53,6 +55,7 @@ public class userAggreement extends javax.swing.JFrame {
         jLabel1.setText("User Aggreement");
 
         jButton1.setBackground(new java.awt.Color(255, 204, 0));
+        jButton1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Disagree");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -62,6 +65,7 @@ public class userAggreement extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(255, 204, 0));
+        jButton2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Agree");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -143,13 +147,38 @@ public class userAggreement extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        userAggreement jframe = new userAggreement(role);
+        jframe.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
+        // Debugging: Print the role value
+        System.out.println("Role: " + role);
+
+        if (role == null || role.isEmpty()) {
+            System.out.println("Role is null or empty");
+            JOptionPane.showMessageDialog(this, "Role is not set. Please check!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (role.equals("Admin")) {
+            adminMenu jframe3 = new adminMenu();
+            jframe3.setVisible(true);
+            dispose();
+        } else if (role.equals("Staff")) {
+            staffMenu jframe1 = new staffMenu();
+            jframe1.setVisible(true);
+            dispose();
+        } else if (role.equals("Student")) {
+            studentMenu jframe2 = new studentMenu();
+            jframe2.setVisible(true);
+            dispose();
+        } else {
+            System.out.println("Invalid role: " + role);
+            JOptionPane.showMessageDialog(this, "Invalid role: " + role, "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -186,7 +215,7 @@ public class userAggreement extends javax.swing.JFrame {
                 } catch (UnsupportedLookAndFeelException ex) {
                     Logger.getLogger(staffMenu.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                new userAggreement().setVisible(true);
+                new userAggreement(role).setVisible(true);
             }
         });
     }

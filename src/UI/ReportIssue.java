@@ -32,29 +32,23 @@ public class ReportIssue extends javax.swing.JFrame {
     public ReportIssue() {
         initComponents();
         getContentPane().setBackground(new Color(5, 7, 153));
-        // Set the icon image
+        setLocationRelativeTo(null);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
 
         String [] columnNames = {"ProjectorID", "ProjectorName", "Issue"};
         model = new DefaultTableModel(columnNames, 0);
         jTable1.setModel(model);
 
-        // Yellow color for the table
         jTable1.setBackground(new Color( 5, 7, 153));
         jTable1.setForeground(Color.white);
 
-        // Set the table header color
         jTable1.getTableHeader().setBackground(new Color(255, 255, 0));
 
-        // Set the table header font color
         jTable1.getTableHeader().setForeground(Color.black);
         jTable1.setBorder( BorderFactory.createLineBorder(Color.white, 1));
 
-
-        // Set the table header font
         jTable1.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 12));
 
-        // Load The data into the table
         loadData();
     }
 
@@ -95,7 +89,7 @@ public class ReportIssue extends javax.swing.JFrame {
         jLabel1.setText("REPORT ISSUE");
 
         jButton6.setBackground(new java.awt.Color(204, 153, 0));
-        jButton6.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton6.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Back");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -105,7 +99,7 @@ public class ReportIssue extends javax.swing.JFrame {
         });
 
         jButton7.setBackground(new java.awt.Color(204, 153, 0));
-        jButton7.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton7.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Send a Issue");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -172,7 +166,6 @@ public class ReportIssue extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
-    // This is for the report issue
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         initializeIssueDialog();
       
@@ -182,7 +175,6 @@ public class ReportIssue extends javax.swing.JFrame {
         javax.swing.JPanel panel = new javax.swing.JPanel();
         panel.setLayout(new java.awt.GridLayout(0, 2, 5, 5)); // Grid layout for labels and fields
 
-// Add input fields
         panel.add(new javax.swing.JLabel("Projector Name"));
         javax.swing.JTextField projectorField = new javax.swing.JTextField();
         panel.add(projectorField);
@@ -192,7 +184,6 @@ public class ReportIssue extends javax.swing.JFrame {
         panel.add(issueField);
 
 
-        // Show the dialog
         Object[] options = {"Submit", "Cancel"};
 
         javax.swing.JOptionPane optionPane = new javax.swing.JOptionPane(
@@ -212,22 +203,21 @@ public class ReportIssue extends javax.swing.JFrame {
             String projectorName = projectorField.getText();
             String issue = issueField.getText();
 
-            // Validate input
+
             if (projectorName.isEmpty() || issue.isEmpty()) {
                 javax.swing.JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Error", javax.swing.JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            // Create a map to hold the data
+
             Map<String, String> data = new HashMap<>();
             data.put("projector_name", projectorName);
             data.put("issue", issue);
 
-            // Call the SQL method to insert the data
+
             ProjectorSQL.getInstance().insertIssue(data);
             dialog.dispose();
 
-            // Show success message
             javax.swing.JOptionPane.showMessageDialog(this, "Issue reported successfully!", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
             loadData();
         }
@@ -239,7 +229,7 @@ public class ReportIssue extends javax.swing.JFrame {
 
     private void loadData() {
         issueList = ProjectorSQL.getInstance().getIssue();
-        model.setRowCount(0); // Clear existing rows
+        model.setRowCount(0);
 
         for (IssueModel issue : issueList) {
             Object[] row = {issue.getId(), issue.getProjectorName(), issue.getIssue()};

@@ -26,7 +26,7 @@ public class studentMenu extends javax.swing.JFrame {
     public studentMenu() {
         initComponents();
  getContentPane().setBackground(new Color(5, 7, 153));
-        // Set the icon image
+        setLocationRelativeTo(null);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
     }
 
@@ -52,7 +52,7 @@ public class studentMenu extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(694, 456));
 
         jButton1.setBackground(new java.awt.Color(255, 204, 0));
-        jButton1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("EXIT");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -62,7 +62,7 @@ public class studentMenu extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(255, 204, 0));
-        jButton2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("LOG OUT");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -72,7 +72,7 @@ public class studentMenu extends javax.swing.JFrame {
         });
 
         jButton3.setBackground(new java.awt.Color(255, 204, 0));
-        jButton3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Check Projector & Props Available");
         jButton3.setMaximumSize(new java.awt.Dimension(151, 23));
@@ -84,7 +84,7 @@ public class studentMenu extends javax.swing.JFrame {
         });
 
         jButton4.setBackground(new java.awt.Color(255, 204, 0));
-        jButton4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Borrow Projector & Props");
         jButton4.setMaximumSize(new java.awt.Dimension(151, 23));
@@ -96,7 +96,7 @@ public class studentMenu extends javax.swing.JFrame {
         });
 
         jButton5.setBackground(new java.awt.Color(255, 204, 0));
-        jButton5.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Return Projector & Props");
         jButton5.setMaximumSize(new java.awt.Dimension(151, 23));
@@ -172,36 +172,30 @@ public class studentMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
         StudentAvailableProjector avail = new StudentAvailableProjector();
         avail.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
          BorrowingForm avail = new BorrowingForm();
         avail.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
          StudentReturnProjector avail = new StudentReturnProjector();
         avail.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
          int response = JOptionPane.showConfirmDialog(this, "Are you sure you want to log out?", "Log Out", JOptionPane.YES_NO_OPTION);
         if (response == JOptionPane.YES_OPTION) {
-            // User clicked "Yes", perform log out action
             login login = new login();
             login.setVisible(true);
             dispose();
         } else {
-            // User clicked "No", do nothing
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -29,30 +29,22 @@ public class AdminLogs extends javax.swing.JFrame {
     public AdminLogs() {
         initComponents();
         getContentPane().setBackground(new Color(5, 7, 153));
-        // Set the icon image
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
-
+        setLocationRelativeTo(null);
         String [] columnNames = {"LogID", "Description"};
         model = new DefaultTableModel(columnNames, 0);
         jTable1.setModel(model);
 
-
-        // Yellow color for the table
         jTable1.setBackground(new Color( 5, 7, 153));
         jTable1.setForeground(Color.white);
 
-        // Set the table header color
         jTable1.getTableHeader().setBackground(new Color(255, 255, 0));
 
-        // Set the table header font color
         jTable1.getTableHeader().setForeground(Color.black);
         jTable1.setBorder( BorderFactory.createLineBorder(Color.white, 1));
 
-
-        // Set the table header font
         jTable1.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 12));
 
-        // load logs
         loadData();
     }
     /**
@@ -87,6 +79,7 @@ public class AdminLogs extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton6.setBackground(new java.awt.Color(255, 204, 0));
+        jButton6.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Back");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -154,7 +147,7 @@ public class AdminLogs extends javax.swing.JFrame {
 
     private void loadData() {
 
-        model.setRowCount(0); // Clear existing rows
+        model.setRowCount(0);
 
         logList = LogSQL.getInstance().getAllLogs();
         for (LogModel log : logList) {

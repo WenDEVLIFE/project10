@@ -24,7 +24,7 @@ public class adminMenu extends javax.swing.JFrame {
     public adminMenu() {
         initComponents();
         getContentPane().setBackground(new Color(5, 7, 153));
-        // Set the icon image
+        setLocationRelativeTo(null);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
     }
     /**
@@ -54,7 +54,7 @@ public class adminMenu extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(694, 456));
 
         jButton1.setBackground(new java.awt.Color(204, 153, 0));
-        jButton1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Logs");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +64,7 @@ public class adminMenu extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(204, 153, 0));
-        jButton2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Borrowing History");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -74,7 +74,7 @@ public class adminMenu extends javax.swing.JFrame {
         });
 
         jButton3.setBackground(new java.awt.Color(204, 153, 0));
-        jButton3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Available Projector & Props");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +84,7 @@ public class adminMenu extends javax.swing.JFrame {
         });
 
         jButton4.setBackground(new java.awt.Color(204, 153, 0));
-        jButton4.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Mark Projector & Props As Returned");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -94,7 +94,7 @@ public class adminMenu extends javax.swing.JFrame {
         });
 
         jButton7.setBackground(new java.awt.Color(255, 204, 0));
-        jButton7.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton7.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("LOG OUT");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -104,7 +104,7 @@ public class adminMenu extends javax.swing.JFrame {
         });
 
         jButton8.setBackground(new java.awt.Color(255, 204, 0));
-        jButton8.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton8.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton8.setForeground(new java.awt.Color(255, 255, 255));
         jButton8.setText("EXIT");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -122,7 +122,7 @@ public class adminMenu extends javax.swing.JFrame {
         jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logoresize.jpg"))); // NOI18N
 
         jButton5.setBackground(new java.awt.Color(204, 153, 0));
-        jButton5.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Manage Accounts");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -147,7 +147,7 @@ public class adminMenu extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(36, 36, 36))
             .addGroup(layout.createSequentialGroup()
                 .addGap(132, 132, 132)
@@ -192,14 +192,13 @@ public class adminMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
         AdminLogs logs = new AdminLogs();
         logs.setVisible(true);
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        //
         BorrowingHistory  borrow = new BorrowingHistory();
         borrow.setVisible(true);
         
@@ -207,7 +206,7 @@ public class adminMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+
         Admin_AvailableProjector project = new Admin_AvailableProjector();
         project.setVisible(true);
         
@@ -215,7 +214,6 @@ public class adminMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
         AdminMarkProjector projector = new AdminMarkProjector();
         projector.setVisible(true);
         
@@ -223,26 +221,21 @@ public class adminMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
         int response = JOptionPane.showConfirmDialog(this, "Are you sure you want to log out?", "Log Out", JOptionPane.YES_NO_OPTION);
         if (response == JOptionPane.YES_OPTION) {
-            // User clicked "Yes", perform log out action
             login login = new login();
             login.setVisible(true);
             dispose();
         } else {
-            // User clicked "No", do nothing
+
         }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jButton8ActionPerformed
-
-    // This will navigate to the manage accounts
+   
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
         ManageAccounts manage = new ManageAccounts();
         manage.setVisible(true);
         this.dispose();

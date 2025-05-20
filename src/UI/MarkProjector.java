@@ -28,10 +28,10 @@ public class MarkProjector extends javax.swing.JFrame {
     public MarkProjector() {
         initComponents();
         getContentPane().setBackground(new Color(5, 7, 153));
-        // Set the icon image
+
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
 
-        // Set the table model
+
         String [] columnNames = {"ProjectorID", "ProjectorName", "Status"};
         model = new DefaultTableModel(columnNames, 0);
         jTable1.setModel(model);
@@ -41,21 +41,21 @@ public class MarkProjector extends javax.swing.JFrame {
         jTable1.setBackground(new Color( 5, 7, 153));
         jTable1.setForeground(Color.white);
 
-        // Set the table header color
+
         jTable1.getTableHeader().setBackground(new Color(255, 255, 0));
 
-        // Set the table header font color
+
         jTable1.getTableHeader().setForeground(Color.black);
         jTable1.setBorder( BorderFactory.createLineBorder(Color.white, 1));
 
 
-        // Set the table header font
+
         jTable1.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 12));
 
     }
     private void loadData() {
 
-        model.setRowCount(0); // Clear existing rows
+        model.setRowCount(0);
 
         projectorList = ProjectorSQL.getInstance().getProjectors();
 
@@ -176,7 +176,6 @@ public class MarkProjector extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // THis is for mark as returned
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         int selectedRow = jTable1.getSelectedRow();
 
@@ -190,10 +189,10 @@ public class MarkProjector extends javax.swing.JFrame {
                 return;
             }
 
-            // Update the projector status in the database
+
             ProjectorSQL.getInstance().updateToAvailable(projectorID,status);
 
-            // Reload the data to reflect the changes
+
             loadData();
 
             JOptionPane.showMessageDialog(this, "Projector marked as returned successfully.");

@@ -27,9 +27,8 @@ public class BorrowingForm extends javax.swing.JFrame {
     public BorrowingForm() {
         initComponents();
         getContentPane().setBackground(new Color(5, 7, 153));
-        // Set the icon image
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
-
+        setLocationRelativeTo(null);
         loadList();
     }
 
@@ -59,7 +58,7 @@ public class BorrowingForm extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton2.setBackground(new java.awt.Color(255, 204, 0));
-        jButton2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Borrow");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +72,7 @@ public class BorrowingForm extends javax.swing.JFrame {
         jLabel1.setText("BORROW PROJECTOR / PROPS");
 
         jButton3.setBackground(new java.awt.Color(255, 204, 0));
-        jButton3.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Back");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -214,7 +213,6 @@ public class BorrowingForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // This is for the borrow
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
 
         String studentName = jTextField1.getText();
@@ -223,12 +221,10 @@ public class BorrowingForm extends javax.swing.JFrame {
         String projectorName = (String) jComboBox1.getSelectedItem();
 
         if (studentName.isEmpty() || studentID.isEmpty() || course.isEmpty()) {
-            // Show an error message if any field is empty
             JOptionPane.showMessageDialog(this, "Please fill in all fields.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        // Call the method to borrow the projector
         ProjectorSQL.getInstance().borrowProjector(studentName, studentID, course, projectorName);
         loadList();
         jTextField1.setText("");

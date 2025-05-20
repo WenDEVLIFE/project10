@@ -57,7 +57,7 @@ public class jframesystem extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setBackground(new java.awt.Color(255, 204, 0));
-        jButton1.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Sign Up");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +67,7 @@ public class jframesystem extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(255, 204, 0));
-        jButton2.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("Log In here");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -210,8 +210,6 @@ public class jframesystem extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-         // TODO add your handling code here:
         System.out.println("Confirm Password entered (hidden)");
         System.out.println("Redirecting to login page. . .");
 
@@ -221,7 +219,6 @@ public class jframesystem extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
          String username = jTextField1.getText();
         String student_id = jTextField2.getText();
         String password = new String(jPasswordField1.getPassword());
@@ -239,8 +236,6 @@ public class jframesystem extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Username already exists.");
         }
         else {
-
-            // TODO : added a function where it will store user from the database
             System.out.println("Sign-Up Successful for: " + username);
             Map<String, Object> userdata = new HashMap<>();
             userdata.put("username", username);
@@ -256,11 +251,9 @@ public class jframesystem extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
-        // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     /**

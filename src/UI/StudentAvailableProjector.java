@@ -29,30 +29,22 @@ public class StudentAvailableProjector extends javax.swing.JFrame {
     public StudentAvailableProjector() {
         initComponents();
         getContentPane().setBackground(new Color(5, 7, 153));
-        // Set the icon image
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
 
    String [] columnNames = {"ItemID", "ItemName", "Status"};
         model = new DefaultTableModel(columnNames, 0);
         jTable1.setModel(model);
-
-        // Yellow color for the table
+        setLocationRelativeTo(null);
         jTable1.setBackground(new Color( 5, 7, 153));
         jTable1.setForeground(Color.white);
 
-        // Set the table header color
         jTable1.getTableHeader().setBackground(new Color(255, 255, 0));
 
-        // Set the table header font color
         jTable1.getTableHeader().setForeground(Color.black);
         jTable1.setBorder( BorderFactory.createLineBorder(Color.white, 1));
 
-
-        // Set the table header font
         jTable1.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 12));
 
-
-        // Populate the table with data
         loadData();
     }
 
@@ -88,7 +80,7 @@ public class StudentAvailableProjector extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton7.setBackground(new java.awt.Color(204, 153, 0));
-        jButton7.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton7.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Back");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -155,13 +147,10 @@ public class StudentAvailableProjector extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     void loadData() {
-        // Clear the existing data in the table
         model.setRowCount(0);
 
-        // Get the projector data from the database
         projectorList = ProjectorSQL.getInstance().getProjectors();
 
-        // Populate the table with the projector data
         for  ( ProjectorModel projector : projectorList) {
             Object[] row = {projector.getId(), projector.getProjectorName(), projector.getStatus()};
             model.addRow(row);

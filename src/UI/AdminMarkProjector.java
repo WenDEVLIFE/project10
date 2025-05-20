@@ -28,28 +28,21 @@ public class AdminMarkProjector extends javax.swing.JFrame {
         initComponents();
 
         getContentPane().setBackground(new Color(5, 7, 153));
-
-        // Set the icon image
+        setLocationRelativeTo(null);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
 
-        // Set the table model
         String [] columnNames = {"ItemID", "ItemName", "Status"};
         model = new DefaultTableModel(columnNames, 0);
         jTable1.setModel(model);
 
-
         jTable1.setBackground(new Color( 5, 7, 153));
         jTable1.setForeground(Color.white);
 
-        // Set the table header color
         jTable1.getTableHeader().setBackground(new Color(255, 255, 0));
 
-        // Set the table header font color
         jTable1.getTableHeader().setForeground(Color.black);
         jTable1.setBorder( BorderFactory.createLineBorder(Color.white, 1));
 
-
-        // Set the table header font
         jTable1.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 12));
 
         loadData();
@@ -57,7 +50,7 @@ public class AdminMarkProjector extends javax.swing.JFrame {
 
     private void loadData() {
 
-        model.setRowCount(0); // Clear existing rows
+        model.setRowCount(0);
 
         projectorList = ProjectorSQL.getInstance().getProjectors();
 
@@ -113,7 +106,7 @@ public class AdminMarkProjector extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton6.setBackground(new java.awt.Color(204, 153, 0));
-        jButton6.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton6.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Back");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -123,7 +116,7 @@ public class AdminMarkProjector extends javax.swing.JFrame {
         });
 
         jButton5.setBackground(new java.awt.Color(204, 153, 0));
-        jButton5.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Mark as Returned");
         jButton5.addActionListener(new java.awt.event.ActionListener() {

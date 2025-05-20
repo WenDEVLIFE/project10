@@ -38,7 +38,7 @@ public class AccountRegistrationSQL {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false; // Return false if an exception occurs or no result is found
+        return false;
     }
 
     // Insert student account
@@ -49,18 +49,15 @@ public class AccountRegistrationSQL {
         try (Connection conn = DriverManager.getConnection(MYSQLConnection.databaseUrl, MYSQLConnection.user, MYSQLConnection.password);
              PreparedStatement pstmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
-            // Insert into student_account table
             pstmt.setString(1, (String) userdata.get("username"));
             pstmt.setString(2, (String) userdata.get("password"));
             pstmt.setString(3, "Student");
             pstmt.executeUpdate();
 
-            // Retrieve the generated user_id
             try (ResultSet generatedKeys = pstmt.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
-                    int userId = generatedKeys.getInt(1); // Get the generated user_id
+                    int userId = generatedKeys.getInt(1);
 
-                    // Insert into users table
                     try (PreparedStatement pstmt2 = conn.prepareStatement(insertStudent)) {
                         pstmt2.setInt(1, userId);
                         pstmt2.setString(2, (String) userdata.get("student_id")); // Assuming student_id is provided in userdata
@@ -75,7 +72,6 @@ public class AccountRegistrationSQL {
         }
     }
 
-    // Insert staff account
     public void insertStaffAccount(Map<String, Object> userdata, JDialog dialog){
         String sql = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";
         String insertStudent = "INSERT INTO student (user_id, student_id) VALUES (?, ?)";
@@ -83,7 +79,6 @@ public class AccountRegistrationSQL {
         try (Connection conn = DriverManager.getConnection(MYSQLConnection.databaseUrl, MYSQLConnection.user, MYSQLConnection.password);
              PreparedStatement pstmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
-            // Insert into student_account table
             pstmt.setString(1, (String) userdata.get("username"));
             pstmt.setString(2, (String) userdata.get("password"));
             pstmt.setString(3, "Staff");
@@ -91,7 +86,6 @@ public class AccountRegistrationSQL {
             int rowsAffected = pstmt.executeUpdate();
 
             if (rowsAffected > 0) {
-                // Retrieve the generated user_id
                dialog.dispose();
             }
 
@@ -100,21 +94,18 @@ public class AccountRegistrationSQL {
         }
     }
 
-        // Insert admin account
     public void insertAdminAccount(Map<String, Object> userdata, JDialog dialog){
         String sql = "INSERT INTO users (username, password, role) VALUES (?, ?, ?)";
 
         try (Connection conn = DriverManager.getConnection(MYSQLConnection.databaseUrl, MYSQLConnection.user, MYSQLConnection.password);
              PreparedStatement pstmt = conn.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
-            // Insert into student_account table
             pstmt.setString(1, (String) userdata.get("username"));
             pstmt.setString(2, (String) userdata.get("password"));
             pstmt.setString(3, "Admin");
             int rowsAffected = pstmt.executeUpdate();
 
             if (rowsAffected > 0) {
-                // Retrieve the generated user_id
                 dialog.dispose();
             }
 
@@ -131,7 +122,7 @@ public class AccountRegistrationSQL {
         try (java.sql.Connection connection = java.sql.DriverManager.getConnection(
                 MYSQLConnection.databaseUrl, MYSQLConnection.user, MYSQLConnection.password);
              java.sql.PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            // Execute the query
+
             try (java.sql.ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     String id = resultSet.getString("user_id");

@@ -31,23 +31,18 @@ public class Staff_AvailableProjector extends javax.swing.JFrame {
         model = new DefaultTableModel(columnNames, 0);
         jTable1.setModel(model);
 
-        // Yellow color for the table
         jTable1.setBackground(new Color( 5, 7, 153));
         jTable1.setForeground(Color.white);
 
-        // Set the table header color
         jTable1.getTableHeader().setBackground(new Color(255, 255, 0));
 
-        // Set the table header font color
         jTable1.getTableHeader().setForeground(Color.black);
         jTable1.setBorder( BorderFactory.createLineBorder(Color.white, 1));
 
 
-        // Set the table header font
         jTable1.getTableHeader().setFont(new Font("Verdana", Font.BOLD, 12));
 
 
-        // Load the projector data into the table
         loadData();
     }
 
@@ -93,7 +88,7 @@ public class Staff_AvailableProjector extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jButton6.setBackground(new java.awt.Color(255, 204, 0));
-        jButton6.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton6.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setText("Back");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -103,7 +98,7 @@ public class Staff_AvailableProjector extends javax.swing.JFrame {
         });
 
         jButton5.setBackground(new java.awt.Color(255, 204, 0));
-        jButton5.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton5.setForeground(new java.awt.Color(255, 255, 255));
         jButton5.setText("Delete");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +108,7 @@ public class Staff_AvailableProjector extends javax.swing.JFrame {
         });
 
         jButton7.setBackground(new java.awt.Color(255, 204, 0));
-        jButton7.setFont(new java.awt.Font("Verdana", 1, 12)); // NOI18N
+        jButton7.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setText("Add Projector/ Props");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -128,17 +123,15 @@ public class Staff_AvailableProjector extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(41, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(82, 82, 82)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82)
-                        .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(72, 72, 72))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41))))
+                        .addGap(52, 52, 52)
+                        .addComponent(jButton7))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 776, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(41, 41, 41))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addComponent(jLabel10)
@@ -181,10 +174,8 @@ public class Staff_AvailableProjector extends javax.swing.JFrame {
         int selectedRow = jTable1.getSelectedRow();
 
         if (selectedRow != -1) {
-            // Get the projector ID from the selected row
             String projectorId = jTable1.getValueAt(selectedRow, 0).toString();
 
-            // Call the method to delete the projector
             ProjectorSQL.getInstance().deleteProjector(projectorId);
             loadData();
             javax.swing.JOptionPane.showMessageDialog(this, "Item deleted successfully.", "Success", javax.swing.JOptionPane.INFORMATION_MESSAGE);
@@ -234,13 +225,10 @@ public class Staff_AvailableProjector extends javax.swing.JFrame {
     }
 
     void loadData() {
-        // Clear the existing data in the table
         model.setRowCount(0);
 
-        // Get the projector data from the database
         projectorList = ProjectorSQL.getInstance().getProjectors();
 
-        // Populate the table with the projector data
         for  ( ProjectorModel projector : projectorList) {
             Object[] row = {projector.getId(), projector.getProjectorName(), projector.getStatus()};
             model.addRow(row);
@@ -253,12 +241,10 @@ public class Staff_AvailableProjector extends javax.swing.JFrame {
         javax.swing.JPanel panel = new javax.swing.JPanel();
         panel.setLayout(new java.awt.GridLayout(0, 2, 5, 5)); // Grid layout for labels and fields
 
-        // Add input fields
         panel.add(new javax.swing.JLabel("Enter Projector/props Name"));
         javax.swing.JTextField projectorField = new javax.swing.JTextField();
         panel.add(projectorField);
 
-        // Show the dialog
         Object[] options = {"Submit", "Cancel"};
 
         javax.swing.JOptionPane optionPane = new javax.swing.JOptionPane(
