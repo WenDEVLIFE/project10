@@ -27,7 +27,7 @@ public class jframesystem extends javax.swing.JFrame {
         initComponents();
      getContentPane().setBackground(new Color(5, 7, 153));
      setTitle("Sign Up");
-        // Set the icon image
+        setLocationRelativeTo(null);
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/images/logo1.png")));
     }
     /**
